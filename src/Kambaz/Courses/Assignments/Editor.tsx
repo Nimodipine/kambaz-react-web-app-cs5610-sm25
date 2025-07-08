@@ -62,22 +62,38 @@ export default function AssignmentEditor() {
           </tr><br /><br />
 
           <tr>
-            <td align="right"><label htmlFor="wd-assign-to">Assign To</label></td>
+            <td align="right"><label htmlFor="wd-submission-type">Assign</label></td>
+            <td><label htmlFor="wd-assign-to">Assign To</label></td>
+          </tr>
+          <tr>
+            <td></td> 
             <td><input id="wd-assign-to" defaultValue="Everyone" /></td>
-          </tr><br /><br />
+          </tr>
 
           <tr>
-            <td align="right"><label htmlFor="wd-due-date">Due Date</label></td>
+            <td></td>
+            <td><label htmlFor="wd-due-date">Due Date</label></td>
+          </tr>
+          <tr>
+            <td></td>
             <td><input id="wd-due-date" type="date" defaultValue="2025-05-17" /></td>
           </tr>
 
           <tr>
-            <td align="right"><label htmlFor="wd-available-from">Available From</label></td>
+            <td></td>
+            <td><label htmlFor="wd-available-from">Available From</label></td>
+          </tr>
+          <tr>
+            <td></td>
             <td><input id="wd-available-from" type="date" defaultValue="2025-05-06" /></td>
           </tr>
 
           <tr>
-            <td align="right"><label htmlFor="wd-available-until">Available Until</label></td>
+            <td></td>
+            <td><label htmlFor="wd-available-until">Until</label></td>
+          </tr> 
+          <tr>
+            <td></td>
             <td><input id="wd-available-until" type="date" defaultValue="2025-05-31" /></td>
           </tr>
         </tbody>
