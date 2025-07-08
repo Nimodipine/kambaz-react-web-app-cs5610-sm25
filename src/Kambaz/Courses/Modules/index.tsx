@@ -1,7 +1,20 @@
 export default function Modules() {
   return (
     <div>
-      {/* Implement Collapse All button, View Progress button, etc. */}
+      <div id="wd-modules-toolbar" style={{ marginBottom: "16px" }}>
+      <button id="wd-collapse-all">Collapse All</button>
+      <button id="wd-view-progress">View Progress</button>
+
+      {/* Dropdown for Publish All */}
+      <select id="wd-publish-all" style={{ padding: "2px" }}>
+      <option>Publish All</option>
+      <option>Unpublish All Modules</option>
+      <option>Publish Only Week 1</option>
+      </select>
+
+      <button id="wd-add-module">+ Module</button>
+    </div>
+
       <ul id="wd-modules">
         <li className="wd-module">
           <div className="wd-title">Week 1</div>
