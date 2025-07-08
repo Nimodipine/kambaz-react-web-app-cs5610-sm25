@@ -2,7 +2,9 @@ export default function Lab1() {
     return (
         <div id="wd-lab1">
             <h2>Lab 1</h2>
-            <h3>Wei-Yun Feng, CS5610 Summer2 2025</h3>
+            <h3 style={{ color: "blue" }}>Wei-Yun Feng, CS5610 Summer2 2025, my
+<a href="https://github.com/Nimodipine/kambaz-react-web-app-cs5610-sm25/tree/
+a1" id="wd-github"> GitHub Repository</a>      </h3>
             <h3>HTML Examples</h3>
             <div id="wd-h-tag">
                 <h4>Heading Tags</h4>
@@ -185,11 +187,22 @@ tag to tell browsers to render the gaps.
             <textarea id="wd-textarea" cols={30} rows={10}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
 
             <h5 id="wd-buttons">Buttons</h5>
-            <button type="button"
-                    onClick={() => alert("Life is Good!")}
-                    id="wd-all-good">
+            <button
+                type="button"
+                onClick={() => alert("Life is Good!")}
+                id="wd-all-good"
+            >
                 Hello World!
             </button>
+
+            <br /><br />
+
+            <label htmlFor="wd-file-upload">
+                Upload File:
+            </label>
+            <br />
+            <input type="file" id="wd-file-upload" />
+
 
             <h5 id="wd-radio-buttons">Radio buttons</h5>
 
