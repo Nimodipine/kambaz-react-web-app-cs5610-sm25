@@ -1,8 +1,11 @@
-import './App.css'
+import Labs from "./Labs";
 
 function App() {
-
-  return <h1>Welcome to Full Stack MERN Web Application</h1>
+  return (
+    <div>
+      <Labs />
+    </div>
+  )
 }
 
 export default App
