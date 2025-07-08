@@ -267,6 +267,13 @@ tag to tell browsers to render the gaps.
                     value="2000-01-21"
                    id="wd-text-fields-dob"/><br/>        
 
+            <h4>Anchor tag</h4>
+            Please
+            <a href="https://www.lipsum.com" id="wd-lipsum"> click here </a>
+            to get dummy text<br/>    
+
+            Visit my
+            <a href="https://github.com/Nimodipine/kambaz-react-web-app-cs5610-sm25/tree/a1" id="wd-github"> GitHub Repository</a>      
 
         </div>
     );
