@@ -15,6 +15,9 @@ import ReactIconsSampler from "./ReactIcons";
 import Zindex from "./Zindex";
 import BootstrapGrids from "./BootstrapGrids";
 import ScreenSizeLabel from "./ScreenSizeLabel";
+import BootstrapTables from "./BootstrapTables";
+import BootstrapLists from "./BootstrapLists";
+import BootstrapForms from "./BootstrapForms";
 
 export default function Lab2() {
     return (
@@ -36,6 +39,9 @@ export default function Lab2() {
                 <ReactIconsSampler />
                 <BootstrapGrids />
                 <ScreenSizeLabel />
+                <BootstrapTables />
+                <BootstrapLists />
+                <BootstrapForms />
                 <h3>Styling with the STYLE attribute</h3>
                 <p id="wd-lab2-style-attribute">
                     Style attribute allows configuring look and feel
