@@ -14,6 +14,7 @@ import Positions from "./Positions";
 import ReactIconsSampler from "./ReactIcons";
 import Zindex from "./Zindex";
 import BootstrapGrids from "./BootstrapGrids";
+import ScreenSizeLabel from "./ScreenSizeLabel";
 
 export default function Lab2() {
     return (
@@ -34,6 +35,7 @@ export default function Lab2() {
                 <Flex />
                 <ReactIconsSampler />
                 <BootstrapGrids />
+                <ScreenSizeLabel />
                 <h3>Styling with the STYLE attribute</h3>
                 <p id="wd-lab2-style-attribute">
                     Style attribute allows configuring look and feel
