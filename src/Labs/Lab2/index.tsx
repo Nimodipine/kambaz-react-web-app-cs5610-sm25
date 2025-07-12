@@ -18,6 +18,7 @@ import ScreenSizeLabel from "./ScreenSizeLabel";
 import BootstrapTables from "./BootstrapTables";
 import BootstrapLists from "./BootstrapLists";
 import BootstrapForms from "./BootstrapForms";
+import BootstrapNavigation from "./BootstrapNavigation";
 
 export default function Lab2() {
     return (
@@ -42,6 +43,7 @@ export default function Lab2() {
                 <BootstrapTables />
                 <BootstrapLists />
                 <BootstrapForms />
+                <BootstrapNavigation />
                 <h3>Styling with the STYLE attribute</h3>
                 <p id="wd-lab2-style-attribute">
                     Style attribute allows configuring look and feel
