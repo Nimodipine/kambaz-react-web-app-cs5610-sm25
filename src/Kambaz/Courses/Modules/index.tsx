@@ -22,6 +22,7 @@ export default function Modules() {
                 <span><BsGripVertical className="me-2 fs-3" /> Week 1</span>
                 <LessonControlButtons />
               </div>
+
               <ListGroup className="wd-lessons rounded-0">
                 <ListGroup.Item className="wd-lesson p-3 ps-1 d-flex justify-content-between align-items-center">
                   <span><BsGripVertical className="me-2 fs-3" /> LEARNING OBJECTIVES</span>

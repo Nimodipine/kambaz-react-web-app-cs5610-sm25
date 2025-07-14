@@ -37,3 +37,35 @@ body * {
 .wd-lesson {
     border-left: 3px solid green !important;
 }
+
+/* Remove the border from the full list */
+.wd-assignment {
+    /* no border-left here */
+    --bs-list-group-border-color: gray;
+    background-color: var(--bs-secondary-bg-subtle, #c7cdd1);
+}
+
+/* Apply green border only to A1, A2, A3 items */
+.wd-assignment-list-item {
+    border-left: 3px solid green !important;
+    background-color: #fff;
+    /* optional: contrast with title block */
+    padding-left: 12px;
+    /* optional spacing */
+}
+
+/* Optional: make link inside assignment bold/black */
+.wd-assignment-link {
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.wd-assignment-link:hover {
+    text-decoration: underline;
+}
+
+
+.icon-green {
+    color: green;
+}
