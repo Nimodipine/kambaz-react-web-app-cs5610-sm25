@@ -13,7 +13,7 @@ export default function AssignmentEditor() {
 
       {/* Description */}
       <Form.Group className="mb-4" controlId="wd-description" style={{ maxWidth: '600px' }}>
-        <Form.Control as="textarea" rows={4} defaultValue="The assignment is available online. Submit a link to the landing page of" />
+        <Form.Control as="textarea" rows={8} defaultValue="The assignment is available online. Submit a link to the landing page of" />
       </Form.Group>
 
       <Form style={{ maxWidth: '600px' }}>
@@ -100,7 +100,6 @@ export default function AssignmentEditor() {
         </Form.Group>
       </Form>
     </div>
-
 
   );
 }

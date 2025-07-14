@@ -22,6 +22,7 @@ export default function BootstrapNavigation() {
             </div>
 
             <div id="wd-css-navigating-with-cards">
+                <br />
                 <h2>
                     Cards
                 </h2>
