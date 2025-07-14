@@ -74,3 +74,9 @@ body * {
     border: 1px solid #adb5bd;
     /* Medium border */
 }
+
+.wd-box {
+    min-width: 100%;
+    /* Optional: consistent height (if desired) */
+    /* min-height: 320px; */
+}

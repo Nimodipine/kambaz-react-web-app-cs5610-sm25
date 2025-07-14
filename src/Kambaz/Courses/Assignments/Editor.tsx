@@ -13,7 +13,6 @@ export default function AssignmentEditor() {
 
       {/* Description */}
       <Form.Group className="mb-4" controlId="wd-description" style={{ maxWidth: '600px' }}>
-        <Form.Label>Description</Form.Label>
         <Form.Control as="textarea" rows={4} defaultValue="The assignment is available online. Submit a link to the landing page of" />
       </Form.Group>
 
@@ -53,58 +52,55 @@ export default function AssignmentEditor() {
 
         <Form.Group as={Row} className="mb-3" controlId="wd-submission-type">
           <Form.Label column sm={4} className="text-end fw-bold">
-            Submission Type</Form.Label>
-          <Col sm={8}>
-            <Form.Select className="mb-2">
-              <option>Online</option>
-              <option>No Submission</option>
-            </Form.Select>
+            Submission Type
+          </Form.Label>
 
-            <div className="mb-2">Online Entry Options</div>
-            <Form.Check type="checkbox" label="Text Entry" id="wd-text-entry" />
-            <Form.Check type="checkbox" label="Website URL" id="wd-website-url" />
-            <Form.Check type="checkbox" label="Media Recordings" id="wd-media-recordings" />
-            <Form.Check type="checkbox" label="Student Annotation" id="wd-student-annotation" />
-            <Form.Check type="checkbox" label="File Uploads" id="wd-file-upload" />
+          <Col sm={8}>
+            <div className="wd-box p-3 border rounded bg-white">
+              <Form.Select className="mb-2">
+                <option>Online</option>
+                <option>No Submission</option>
+              </Form.Select>
+
+              <div className="mb-2">Online Entry Options</div>
+              <Form.Check type="checkbox" label="Text Entry" id="wd-text-entry" />
+              <Form.Check type="checkbox" label="Website URL" id="wd-website-url" />
+              <Form.Check type="checkbox" label="Media Recordings" id="wd-media-recordings" />
+              <Form.Check type="checkbox" label="Student Annotation" id="wd-student-annotation" />
+              <Form.Check type="checkbox" label="File Uploads" id="wd-file-upload" />
+            </div>
           </Col>
         </Form.Group>
 
-        <hr />
-
-        <Form.Group as={Row} className="mb-3" controlId="wd-assign-to">
+        <Form.Group as={Row} className="mb-3" controlId="wd-assign">
           <Form.Label column sm={4} className="text-end fw-bold">
-            Assign</Form.Label>
-          <Col sm={8}>
-            <Form.Label className="fw-normal">Assign To</Form.Label>
-            <Form.Control type="text" defaultValue="Everyone" />
-          </Col>
-        </Form.Group>
+            Assign
+          </Form.Label>
 
-        <Form.Group as={Row} className="mb-3" controlId="wd-due-date">
-          <Form.Label column sm={4}></Form.Label>
           <Col sm={8}>
-            <Form.Label className="fw-normal">Due Date</Form.Label>
-            <Form.Control type="date" defaultValue="2025-05-17" />
-          </Col>
-        </Form.Group>
+            <div className="wd-box p-3 border rounded bg-white">
+              <Form.Label className="fw-normal">Assign To</Form.Label>
+              <Form.Control type="text" defaultValue="Everyone" className="mb-3" />
 
-        <Form.Group as={Row} className="mb-3" controlId="wd-available-from">
-          <Form.Label column sm={4}></Form.Label>
-          <Col sm={8}>
-            <Form.Label className="fw-normal">
-              Available From</Form.Label>
-            <Form.Control type="date" defaultValue="2025-05-06" />
-          </Col>
-        </Form.Group>
+              <Form.Label className="fw-normal">Due</Form.Label>
+              <Form.Control type="date" defaultValue="2025-05-17" className="mb-3" />
 
-        <Form.Group as={Row} className="mb-3" controlId="wd-available-until">
-          <Form.Label column sm={4}></Form.Label>
-          <Col sm={8}>
-            <Form.Label className="fw-normal">Until</Form.Label>
-            <Form.Control type="date" defaultValue="2025-05-31" />
+              <Row className="g-3">
+                <Col md={6}>
+                  <Form.Label className="fw-normal">Available From</Form.Label>
+                  <Form.Control type="date" defaultValue="2025-05-06" />
+                </Col>
+                <Col md={6}>
+                  <Form.Label className="fw-normal">Until</Form.Label>
+                  <Form.Control type="date" defaultValue="2025-05-31" />
+                </Col>
+              </Row>
+            </div>
           </Col>
         </Form.Group>
       </Form>
     </div>
+
+
   );
 }

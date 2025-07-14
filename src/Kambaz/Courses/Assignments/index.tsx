@@ -28,13 +28,11 @@ export default function Assignments() {
 
           <ListGroup.Item className="wd-assignment-list-item p-3">
             <div className="d-flex justify-content-between align-items-start">
-              <div className="d-flex flex-column align-items-center me-2">
-                <br />
+              <div className="d-flex flex-column align-items-center me-2 mt-4">
                 <BsGripVertical className="fs-3 mb-1" />
               </div>
 
-              <div className="d-flex flex-column align-items-center me-2">
-                <br />
+              <div className="d-flex flex-column align-items-center me-2 mt-4">
                 <MdOutlineAssignment className="fs-4 icon-green" />
               </div>
 
@@ -48,16 +46,21 @@ export default function Assignments() {
                 </Link>
                 <div className="wd-assignment-description">
                   <span className="text-danger">Multiple Modules</span> |
-                  <strong> Not available until</strong> May 6 at 12:00am<br />
-                  <strong>Due</strong> May 13 at 11:59pm | 100pts
+                  <strong> Not available until</strong> May 6 at 12:00am
+                  <div className="mt-0.5">
+                    <strong>Due</strong> May 13 at 11:59pm | 100pts
+                  </div>
                 </div>
               </div>
 
+
               {/* Right side: controls */}
               <div className="text-end">
-                <br />
-                <PlusControlButtons />
+                <div className="mt-4">
+                  <PlusControlButtons />
+                </div>
               </div>
+
             </div>
           </ListGroup.Item>
 
@@ -66,12 +69,10 @@ export default function Assignments() {
           <ListGroup.Item className="wd-assignment-list-item p-3">
             <div className="d-flex justify-content-between align-items-start">
               {/* Left side: grip + file icons */}
-              <div className="d-flex flex-column align-items-center me-2">
-                <br />
+              <div className="d-flex flex-column align-items-center me-2 mt-4">
                 <BsGripVertical className="fs-3 mb-1" />
               </div>
-              <div className="d-flex flex-column align-items-center me-2">
-                <br />
+              <div className="d-flex flex-column align-items-center me-2 mt-4">
                 <MdOutlineAssignment className="fs-4 icon-green" />
               </div>
               {/* Center: title and description stacked */}
@@ -85,13 +86,14 @@ export default function Assignments() {
                 <div className="wd-assignment-description">
                   <span className="text-danger">Multiple Modules</span> |
                   <strong> Not available until</strong> May 6 at 12:00am<br />
+                  <div className="mt-0.5" />
                   <strong>Due</strong> May 13 at 11:59pm | 100pts
                 </div>
               </div>
 
               {/* Right side: controls */}
               <div className="text-end">
-                <br />
+                <div className="mt-4" />
                 <PlusControlButtons />
               </div>
             </div>
@@ -101,12 +103,10 @@ export default function Assignments() {
           <ListGroup.Item className="wd-assignment-list-item p-3">
             <div className="d-flex justify-content-between align-items-start">
               {/* Left side: grip + file icons */}
-              <div className="d-flex flex-column align-items-center me-2">
-                <br />
+              <div className="d-flex flex-column align-items-center me-2 mt-4">
                 <BsGripVertical className="fs-3 mb-1" />
               </div>
-              <div className="d-flex flex-column align-items-center me-2">
-                <br />
+              <div className="d-flex flex-column align-items-center me-2 mt-4">
                 <MdOutlineAssignment className="fs-4 icon-green" />
               </div>
               {/* Center: title and description stacked */}
@@ -119,13 +119,14 @@ export default function Assignments() {
                 </Link>
                 <div className="wd-assignment-description">
                   <span className="text-danger">Multiple Modules</span> |
-                  <strong> Not available until</strong> May 6 at 12:00am<br />
+                  <strong> Not available until</strong> May 6 at 12:00am
+                  <div className="mt-0.5" />
                   <strong>Due</strong> May 13 at 11:59pm | 100pts
                 </div>
               </div>
               {/* Right side: controls */}
               <div className="text-end">
-                <br />
+                <div className="mt-4" />
                 <PlusControlButtons />
               </div>
             </div>
@@ -146,12 +147,10 @@ export default function Assignments() {
           <ListGroup.Item className="wd-assignment-list-item p-3">
             <div className="d-flex justify-content-between align-items-start">
               {/* Left: Icons */}
-              <div className="d-flex flex-column align-items-center me-2">
-                <br />
+              <div className="d-flex flex-column align-items-center me-2 mt-3">
                 <BsGripVertical className="fs-3 mb-1" />
               </div>
-              <div className="d-flex flex-column align-items-center me-2">
-                <br />
+              <div className="d-flex flex-column align-items-center me-2 mt-3">
                 <MdOutlineAssignment className="fs-4 icon-green" />
               </div>
               {/* Center: Title and Description */}
@@ -170,7 +169,7 @@ export default function Assignments() {
               </div>
               {/* Right: Optional Control Buttons */}
               <div className="text-end">
-                <br />
+                <div className="mt-3" />
                 <PlusControlButtons />
               </div>
             </div>
@@ -192,12 +191,10 @@ export default function Assignments() {
           <ListGroup.Item className="wd-assignment-list-item p-3">
             <div className="d-flex justify-content-between align-items-start">
               {/* Left: Icons */}
-              <div className="d-flex flex-column align-items-center me-2">
-                <br />
+              <div className="d-flex flex-column align-items-center me-2 mt-3">
                 <BsGripVertical className="fs-3 mb-1" />
               </div>
-              <div className="d-flex flex-column align-items-center me-2">
-                <br />
+              <div className="d-flex flex-column align-items-center me-2 mt-3">
                 <MdOutlineAssignment className="fs-4 icon-green" />
               </div>
 
@@ -218,7 +215,7 @@ export default function Assignments() {
 
               {/* Right: Optional Control Buttons */}
               <div className="text-end">
-                <br />
+                <div className="mt-3" />
                 <PlusControlButtons />
               </div>
             </div>
@@ -241,12 +238,10 @@ export default function Assignments() {
           <ListGroup.Item className="wd-assignment-list-item p-3">
             <div className="d-flex justify-content-between align-items-start">
               {/* Left: Icons */}
-              <div className="d-flex flex-column align-items-center me-2">
-                <br />
+              <div className="d-flex flex-column align-items-center me-2 mt-3">
                 <BsGripVertical className="fs-3 mb-1" />
               </div>
-              <div className="d-flex flex-column align-items-center me-2">
-                <br />
+              <div className="d-flex flex-column align-items-center me-2 mt-3">
                 <MdOutlineAssignment className="fs-4 icon-green" />
               </div>
 
@@ -265,7 +260,7 @@ export default function Assignments() {
               </div>
               {/* Right: Optional Control Buttons */}
               <div className="text-end">
-                <br />
+                <div className="mt-3" />
                 <PlusControlButtons />
               </div>
             </div>
