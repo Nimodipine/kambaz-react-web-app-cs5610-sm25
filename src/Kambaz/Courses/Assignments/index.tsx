@@ -15,9 +15,12 @@ export default function Assignments() {
         <ListGroup className="rounded-0 wd-assignment">
           {/* Assignment Title */}
           <ListGroup.Item className="wd-assignments-title p-0">
-            <div className="wd-title p-3 ps-2 bg-secondary d-flex align-items-center justify-content-between">
+            <div className="wd-title p-3 ps-2 fs-4 bg-secondary d-flex align-items-center justify-content-between">
               <span><BsGripVertical className="me-2 fs-3" /> ASSIGNMENTS</span>
-              40% of Total <button>+</button>
+              <div className="d-flex align-items-center gap-2">
+                <span className="badge rounded-pill text-dark fs-6 wd-assignment-pill">40% of Total</span>
+                <button>+</button>
+              </div>
             </div>
           </ListGroup.Item>
 
@@ -127,12 +130,60 @@ export default function Assignments() {
           </ListGroup.Item>
         </ListGroup>
 
-        {/* EXAMS Table */}
+        {/* Quizzes Table */}
         <ListGroup className="rounded-0 wd-assignment mt-5">
           <ListGroup.Item className="wd-assignments-title p-0">
-            <div className="wd-title p-3 ps-2 bg-secondary d-flex align-items-center justify-content-between">
+            <div className="wd-title p-3 ps-2 fs-4 bg-secondary d-flex align-items-center justify-content-between">
+              <span><BsGripVertical className="me-2 fs-3" /> Quizzes</span>
+              <div className="d-flex align-items-center gap-2">
+                <span className="badge rounded-pill text-dark fs-6 wd-assignment-pill">10% of Total</span>
+                <button>+</button>
+              </div>
+            </div>
+          </ListGroup.Item>
+          <ListGroup.Item className="wd-assignment-list-item p-3">
+            <div className="d-flex justify-content-between align-items-start">
+              {/* Left: Icons */}
+              <div className="d-flex flex-column align-items-center me-2">
+                <br />
+                <BsGripVertical className="fs-3 mb-1" />
+              </div>
+              <div className="d-flex flex-column align-items-center me-2">
+                <br />
+                <MdOutlineAssignment className="fs-4 icon-green" />
+              </div>
+              {/* Center: Title and Description */}
+              <div className="flex-grow-1">
+                <Link
+                  to="/Kambaz/Courses/1234/Assignments/301"
+                  className="wd-assignment-link fw-bold text-dark fs-5"
+                >
+                  Q1
+                </Link>
+                <div className="wd-assignment-description">
+                  <strong>Not available until</strong> May 13 9pm |
+                  <strong> Due</strong> May 20 at 8:59pm |
+                  -/29 pts
+                </div>
+              </div>
+              {/* Right: Optional Control Buttons */}
+              <div className="text-end">
+                <br />
+                <PlusControlButtons />
+              </div>
+            </div>
+          </ListGroup.Item>
+        </ListGroup>
+
+        {/* Exams Table */}
+        <ListGroup className="rounded-0 wd-assignment mt-5">
+          <ListGroup.Item className="wd-assignments-title p-0">
+            <div className="wd-title p-3 ps-2 fs-4 bg-secondary d-flex align-items-center justify-content-between">
               <span><BsGripVertical className="me-2 fs-3" /> EXAMS</span>
-              20% of Total <button>+</button>
+              <div className="d-flex align-items-center gap-2">
+                <span className="badge rounded-pill text-dark fs-6 wd-assignment-pill">20% of Total</span>
+                <button>+</button>
+              </div>
             </div>
           </ListGroup.Item>
 
@@ -176,9 +227,12 @@ export default function Assignments() {
         {/* PROJECT Table */}
         <ListGroup className="rounded-0 wd-assignment mt-5">
           <ListGroup.Item className="wd-assignments-title p-0">
-            <div className="wd-title p-3 ps-2 bg-secondary d-flex align-items-center justify-content-between">
+            <div className="wd-title p-3 ps-2 fs-4 bg-secondary d-flex align-items-center justify-content-between">
               <span><BsGripVertical className="me-2 fs-3" /> PROJECT</span>
-              30% of Total <button>+</button>
+              <div className="d-flex align-items-center gap-2">
+                <span className="badge rounded-pill text-dark fs-6 wd-assignment-pill">30% of Total</span>
+                <button>+</button>
+              </div>
             </div>
           </ListGroup.Item>
 

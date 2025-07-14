@@ -69,3 +69,8 @@ body * {
 .icon-green {
     color: green;
 }
+
+.wd-assignment-pill {
+    border: 1px solid #adb5bd;
+    /* Medium border */
+}
