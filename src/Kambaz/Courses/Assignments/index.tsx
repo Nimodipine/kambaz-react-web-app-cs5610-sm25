@@ -1,15 +1,17 @@
 import { ListGroup } from "react-bootstrap";
 import { BsGripVertical } from "react-icons/bs";
 import PlusControlButtons from "./PlusControlButtons";
+import HeaderControlButtons from "./HeaderControlButtons"
 import { MdOutlineAssignment } from "react-icons/md";
 import { Link } from "react-router-dom";
+import AssignmentsControls from "./AssignmentsControls";
 
 export default function Assignments() {
   return (
-    <div id="wd-assignments">
-      <input placeholder="Search for Assignments" id="wd-search-assignment" />
-      <button id="wd-add-assignment-group">+ Group</button>
-      <button id="wd-add-assignment">+ Assignment</button>
+    <div>
+      <div>
+        <AssignmentsControls />
+      </div>
 
       <div>
         <ListGroup className="rounded-0 wd-assignment">
@@ -19,7 +21,7 @@ export default function Assignments() {
               <span><BsGripVertical className="me-2 fs-3" /> ASSIGNMENTS</span>
               <div className="d-flex align-items-center gap-2">
                 <span className="badge rounded-pill text-dark fs-6 wd-assignment-pill">40% of Total</span>
-                <button>+</button>
+                <HeaderControlButtons />
               </div>
             </div>
           </ListGroup.Item>
@@ -137,7 +139,7 @@ export default function Assignments() {
               <span><BsGripVertical className="me-2 fs-3" /> Quizzes</span>
               <div className="d-flex align-items-center gap-2">
                 <span className="badge rounded-pill text-dark fs-6 wd-assignment-pill">10% of Total</span>
-                <button>+</button>
+                <HeaderControlButtons />
               </div>
             </div>
           </ListGroup.Item>
@@ -182,7 +184,7 @@ export default function Assignments() {
               <span><BsGripVertical className="me-2 fs-3" /> EXAMS</span>
               <div className="d-flex align-items-center gap-2">
                 <span className="badge rounded-pill text-dark fs-6 wd-assignment-pill">20% of Total</span>
-                <button>+</button>
+                <HeaderControlButtons />
               </div>
             </div>
           </ListGroup.Item>
@@ -231,7 +233,7 @@ export default function Assignments() {
               <span><BsGripVertical className="me-2 fs-3" /> PROJECT</span>
               <div className="d-flex align-items-center gap-2">
                 <span className="badge rounded-pill text-dark fs-6 wd-assignment-pill">30% of Total</span>
-                <button>+</button>
+                <HeaderControlButtons />
               </div>
             </div>
           </ListGroup.Item>
