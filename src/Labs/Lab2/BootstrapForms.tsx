@@ -52,6 +52,7 @@ export default function BootstrapForms() {
             </div>
 
             <div id="wd-css-styling-addons">
+                <br />
                 <h3>Addons</h3>
                 <InputGroup className="mb-3">
                     <InputGroup.Text>$</InputGroup.Text>
@@ -66,6 +67,7 @@ export default function BootstrapForms() {
             </div>
 
             <div id="wd-css-responsive-forms-1">
+                <br />
                 <h3>Responsive forms</h3>
                 <Form.Group as={Row} className="mb-3" controlId="email1">
                     <Form.Label column sm={2}>
