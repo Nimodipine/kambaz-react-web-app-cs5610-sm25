@@ -18,7 +18,6 @@ export default function Positions() {
         </div>
       </div>
 
-      <hr />
 
       <div id="wd-css-position-absolute">
         <h2>Absolute position</h2>
@@ -33,23 +32,20 @@ export default function Positions() {
             Square
           </div>
         </div>
-
-        {/* Instead of <br /> tags, consider using CSS margin or padding */}
-        <div style={{ height: '100px' }} />
+        <br /><br /><br /><br /><br /><br /><br />
       </div>
 
-       <hr />
 
-        <div id="wd-css-position-fixed">
+      <div id="wd-css-position-fixed">
         <h2>Fixed position</h2>
         Checkout the blue square that says "Fixed position" stuck all the way on the right and half way down the page. It doesn't scroll with the rest of the page. Its position is "Fixed".
         <div className="wd-pos-fixed 
             wd-dimension-square wd-bg-color-blue 
             wd-fg-color-white">
-            Fixed position
+          Fixed position
         </div>
-        </div>
-
+      </div>
+      <br />
     </>
   );
 }

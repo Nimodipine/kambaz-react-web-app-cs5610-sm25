@@ -12,9 +12,11 @@ export default function BootstrapLists() {
                     <ListGroup.Item>Lord of the Ring</ListGroup.Item>
                     <ListGroup.Item disabled>Star Wars</ListGroup.Item>
                 </ListGroup>
+                <br />
             </div>
 
             <div id="wd-css-hyperlink-list">
+                <br />
                 <h3>Favorite books</h3>
                 <ListGroup>
                     <ListGroup.Item action active

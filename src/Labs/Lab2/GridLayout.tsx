@@ -39,6 +39,8 @@ export default function GridLayout() {
                     <p>This is the right sidebar</p>
                 </div>
             </div>
+            <br /><br />
         </div>
+
     );
 }

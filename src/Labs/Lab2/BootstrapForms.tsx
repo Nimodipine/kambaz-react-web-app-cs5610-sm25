@@ -4,6 +4,7 @@ export default function BootstrapForms() {
     return (
         <div>
             <div id="wd-css-styling-forms">
+                <br />
                 <h2>Forms</h2>
                 <FormGroup className="mb-3" controlId="wd-email">
                     <FormLabel>Email address</FormLabel>
@@ -16,6 +17,7 @@ export default function BootstrapForms() {
             </div>
 
             <div id="wd-css-styling-dropdowns">
+                <br />
                 <h3>Dropdowns</h3>
                 <FormSelect>
                     <option selected>Open this select menu</option>
@@ -26,6 +28,7 @@ export default function BootstrapForms() {
             </div>
 
             <div id="wd-css-styling-switches">
+                <br />
                 <h3>Switches</h3>
                 <Form.Check type="switch" checked={false} id="wd-switch-1"
                     label="Unchecked switch checkbox input" />
@@ -40,6 +43,7 @@ export default function BootstrapForms() {
             </div>
 
             <div id="wd-css-styling-range-and-sliders">
+                <br />
                 <h3>Range</h3>
                 <FormGroup controlId="wd-range1">
                     <FormLabel>Example range</FormLabel>
