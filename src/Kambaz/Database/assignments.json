@@ -1,0 +1,128 @@
+[
+    {
+        "id": "a1",
+        "title": "A1",
+        "category": "ASSIGNMENTS",
+        "points": 100,
+        "available": "May 6 at 12:00am",
+        "due": "May 13 at 11:59pm",
+        "description": "Multiple Modules",
+        "percent": "40%",
+        "link": "Assignments/a1",
+        "courses": [
+            "RS101",
+            "RS102",
+            "RS103",
+            "RS104",
+            "RS105",
+            "RS106",
+            "RS107",
+            "RS108"
+        ]
+    },
+    {
+        "id": "a2",
+        "title": "A2",
+        "category": "ASSIGNMENTS",
+        "points": 100,
+        "available": "May 6 at 12:00am",
+        "due": "May 13 at 11:59pm",
+        "description": "Multiple Modules",
+        "percent": "40%",
+        "link": "Assignments/a2",
+        "courses": [
+            "RS101",
+            "RS102",
+            "RS103",
+            "RS104",
+            "RS105",
+            "RS106",
+            "RS107",
+            "RS108"
+        ]
+    },
+    {
+        "id": "a3",
+        "title": "A3",
+        "category": "ASSIGNMENTS",
+        "points": 100,
+        "available": "May 6 at 12:00am",
+        "due": "May 13 at 11:59pm",
+        "description": "Multiple Modules",
+        "percent": "40%",
+        "link": "Assignments/a3",
+        "courses": [
+            "RS101",
+            "RS102",
+            "RS103",
+            "RS104",
+            "RS105",
+            "RS106",
+            "RS107",
+            "RS108"
+        ]
+    },
+    {
+        "id": "q1",
+        "title": "Q1",
+        "category": "QUIZZES",
+        "points": 29,
+        "available": "May 13 9pm",
+        "due": "May 20 at 8:59pm",
+        "description": "",
+        "percent": "10%",
+        "link": "Assignments/q1",
+        "courses": [
+            "RS101",
+            "RS102",
+            "RS103",
+            "RS104",
+            "RS105",
+            "RS106",
+            "RS107",
+            "RS108"
+        ]
+    },
+    {
+        "id": "midterm",
+        "title": "Midterm Exam",
+        "category": "EXAMS",
+        "points": 100,
+        "available": "May 13 9pm",
+        "due": "May 20 at 8:59pm",
+        "description": "",
+        "percent": "20%",
+        "link": "Assignments/midterm",
+        "courses": [
+            "RS101",
+            "RS102",
+            "RS103",
+            "RS104",
+            "RS105",
+            "RS106",
+            "RS107",
+            "RS108"
+        ]
+    },
+    {
+        "id": "final",
+        "title": "Final Project",
+        "category": "PROJECT",
+        "points": 100,
+        "available": "",
+        "due": "May 12, 2025",
+        "description": "",
+        "percent": "30%",
+        "link": "Assignments/final",
+        "courses": [
+            "RS101",
+            "RS102",
+            "RS103",
+            "RS104",
+            "RS105",
+            "RS106",
+            "RS107",
+            "RS108"
+        ]
+    }
+]
