@@ -30,7 +30,6 @@ export default function Assignments() {
 
   const assignments = assignmentsData.filter(a => a.courses?.includes(cid));
 
-  // ✅ Group by category (same as before)
   const grouped: Record<string, Assignment[]> = assignments.reduce(
     (acc, item) => {
       acc[item.category] = acc[item.category] || [];
