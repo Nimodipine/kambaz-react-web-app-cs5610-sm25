@@ -30,6 +30,7 @@ import ImpliedReturn from "./ImpliedReturn";
 import ArrayIndexAndLength from "./ArrayIndexAndLength";
 import ForLoops from "./ForLoops";
 import FilterFunction from "./FilterFunction";
+import FunctionDestructing from "./FunctionDestructing";
 
 export default function Lab3() {
   console.log('Hello World!');
@@ -61,6 +62,7 @@ export default function Lab3() {
       <TodoList />
       <Spreading />
       <Destructing />
+      <FunctionDestructing />
       <Classes />
       <Styles />
       <Add a={3} b={4} />
