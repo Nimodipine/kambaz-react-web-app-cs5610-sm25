@@ -24,6 +24,12 @@ import Add from "./Add";
 import Square from "./Square";
 import Highlight from "./Highlight";
 import PathParameters from "./PathParameters";
+import ConditionalOutputInline from "./ConditionalOutputInline";
+import ArrowFunctions from "./ArrowFunctions";
+import ImpliedReturn from "./ImpliedReturn";
+import ArrayIndexAndLength from "./ArrayIndexAndLength";
+import ForLoops from "./ForLoops";
+import FilterFunction from "./FilterFunction";
 
 export default function Lab3() {
   console.log('Hello World!');
@@ -36,13 +42,19 @@ export default function Lab3() {
       <IfElse />
       <TernaryOperator />
       <ConditionalOutputIfElse />
+      <ConditionalOutputInline />
       <LegacyFunctions />
+      <ArrowFunctions />
+      <ImpliedReturn />
       <TemplateLiterals />
       <SimpleArrays />
+      <ArrayIndexAndLength />
       <AddingAndRemovingToFromArrays />
+      <ForLoops />
       <MapFunction />
       <FindFunction />
       <FindIndex />
+      <FilterFunction />
       <JsonStringify />
       <House />
       <TodoItem />
