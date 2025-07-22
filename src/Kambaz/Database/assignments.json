@@ -35,6 +35,7 @@
         "dueDate": "2025-05-13",
         "untilDate": "2025-05-12",
         "description": "Multiple Modules",
+        "context": "The assignment is available online.\nSubmit a link to the landing page of your Web Application running on Netlify",
         "percent": "40%",
         "link": "Assignments/a2",
         "courses": [
@@ -59,6 +60,7 @@
         "dueDate": "2025-05-13",
         "untilDate": "2025-05-12",
         "description": "Multiple Modules",
+        "context": "The assignment is available online.\nSubmit a link to the landing page of your Web Application running on Netlify",
         "percent": "40%",
         "link": "Assignments/a3",
         "courses": [
@@ -83,6 +85,7 @@
         "dueDate": "2025-05-13",
         "untilDate": "2025-05-12",
         "description": "",
+        "context": "The quiz is available online.\nSubmit a link to the landing page ofyour Web Application running on Netlify",
         "percent": "10%",
         "link": "Assignments/q1",
         "courses": [
@@ -107,6 +110,7 @@
         "dueDate": "2025-05-13",
         "untilDate": "2025-05-12",
         "description": "",
+        "context": "The exam is available online.\nSubmit a link to the landing page of your Web Application running on Netlify",
         "percent": "20%",
         "link": "Assignments/midterm",
         "courses": [
@@ -131,6 +135,7 @@
         "dueDate": "2025-05-13",
         "untilDate": "2025-05-12",
         "description": "",
+        "context": "The project is available online.\nSubmit a link to the landing page of your Web Application running on Netlify",
         "percent": "30%",
         "link": "Assignments/final",
         "courses": [
