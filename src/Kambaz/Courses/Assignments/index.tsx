@@ -75,7 +75,12 @@ export default function Assignments() {
                   </Link>
                   <div className="wd-assignment-description">
                     {item.description && <span className="text-danger">{item.description}</span>}
-                    {item.available && <> | <strong>Not available until</strong> {item.available}</>}
+                    {item.available && (
+                      <>
+                        {item.description && ' | '}
+                        <strong>Not available until</strong> {item.available}
+                      </>
+                    )}
                     {item.due && (
                       <div className="mt-0.5">
                         <strong>Due</strong> {item.due} | {item.points} pts
