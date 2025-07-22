@@ -81,19 +81,79 @@
         "_id": "M201",
         "name": "Fundamentals of Aerodynamics",
         "description": "Basic aerodynamic concepts and fluid dynamics principles.",
-        "course": "RS102"
+        "course": "RS102",
+        "lessons": [
+            {
+                "_id": "L2011",
+                "name": "Introduction to Aerodynamic Forces",
+                "description": "Understanding lift, drag, thrust, and weight.",
+                "module": "M201"
+            },
+            {
+                "_id": "L2012",
+                "name": "Fluid Properties and Continuity",
+                "description": "Study of fluid behavior, density, viscosity, and the continuity equation.",
+                "module": "M201"
+            },
+            {
+                "_id": "L2013",
+                "name": "Bernoulli’s Principle",
+                "description": "How pressure and velocity vary in fluid flow and affect lift.",
+                "module": "M201"
+            }
+        ]
     },
     {
         "_id": "M202",
         "name": "Subsonic and Supersonic Flow",
         "description": "Understanding subsonic and supersonic aerodynamic behaviors.",
-        "course": "RS102"
+        "course": "RS102",
+        "lessons": [
+            {
+                "_id": "L2021",
+                "name": "Mach Number and Flow Regimes",
+                "description": "Definition and classification of subsonic, transonic, supersonic, and hypersonic flow.",
+                "module": "M202"
+            },
+            {
+                "_id": "L2022",
+                "name": "Compressible Flow Equations",
+                "description": "Application of energy and continuity principles in compressible fluids.",
+                "module": "M202"
+            },
+            {
+                "_id": "L2023",
+                "name": "Shock Waves and Expansion Fans",
+                "description": "Formation and behavior of shock waves and expansion fans in supersonic flows.",
+                "module": "M202"
+            }
+        ]
     },
     {
         "_id": "M203",
         "name": "Aerodynamic Heating",
         "description": "Study of aerodynamic heating and thermal protection systems.",
-        "course": "RS102"
+        "course": "RS102",
+        "lessons": [
+            {
+                "_id": "L2031",
+                "name": "Heat Transfer Mechanisms",
+                "description": "Conduction, convection, and radiation in high-speed flight environments.",
+                "module": "M203"
+            },
+            {
+                "_id": "L2032",
+                "name": "Boundary Layers and Skin Friction",
+                "description": "Thermal effects in boundary layers and the impact of skin friction drag.",
+                "module": "M203"
+            },
+            {
+                "_id": "L2033",
+                "name": "Thermal Protection Systems",
+                "description": "Design and materials used for heat shielding in spacecraft and reentry vehicles.",
+                "module": "M203"
+            }
+        ]
     },
     {
         "_id": "M301",
