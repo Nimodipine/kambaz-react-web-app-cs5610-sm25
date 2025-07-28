@@ -2,9 +2,11 @@ import { Form, Row, Col } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import assignmentsData from "../../Database/assignments.json";
 import { useDispatch } from "react-redux";
-import { addAssignment } from "./reducer"; // adjust path if needed
+import { addAssignment, updateAssignment } from "./reducer";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 interface Assignment {
   id: string;
@@ -24,12 +26,18 @@ interface Assignment {
 }
 
 export default function AssignmentEditor() {
-  const { cid, assignmentId } = useParams();
+  const params = useParams();
+  const { cid } = params;
+
+  // Handle the wildcard route parameter
+  const wildcardParam = params['*'] || '';
+  const assignmentId = wildcardParam === 'Assignments/new' ? 'new' : wildcardParam.replace('Assignments/', '');
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const assignments = useSelector((state: any) => state.assignmentReducer.assignments);
 
   const isNew = assignmentId === "new";
-
   const [title, setTitle] = useState("");
   const [context, setContext] = useState("");
   const [points, setPoints] = useState(100);
@@ -37,25 +45,77 @@ export default function AssignmentEditor() {
   const [availableDate, setAvailableDate] = useState("");
   const [untilDate, setUntilDate] = useState("");
 
-  const handleSave = () => {
-    const newAssignment = {
-      id: uuidv4(),
-      title,
-      context,
-      points,
-      dueDate,
-      availableDate,
-      untilDate,
-      category: "ASSIGNMENTS",
-      percent: "10%", // or let user choose later
-      link: `Assignments/${uuidv4().slice(0, 6)}`, // dummy link
-      description: "",
-      available: "",
-      due: "",
-      courses: [cid!],
-    };
+  useEffect(() => {
+    if (!isNew) {
+      const existing = assignments.find((a: Assignment) => a.id === assignmentId);
+      if (existing) {
+        setTitle(existing.title);
+        setContext(existing.context);
+        setPoints(existing.points);
+        setDueDate(existing.dueDate);
+        setAvailableDate(existing.availableDate);
+        setUntilDate(existing.untilDate);
+      }
+    }
+  }, [isNew, assignmentId, assignments]);
 
-    dispatch(addAssignment(newAssignment));
+  const handleSave = () => {
+    console.log('=== HANDLE SAVE CLICKED ===');
+    console.log('isNew:', isNew);
+    console.log('assignmentId:', assignmentId);
+
+    // Validate required fields
+    if (!title.trim()) {
+      alert('Please enter an assignment title');
+      return;
+    }
+
+    if (isNew) {
+      // Use the same structure as your working version
+      const newId = uuidv4();
+      const newAssignment: Assignment = {
+        id: newId,
+        title: title.trim(),
+        context,
+        points: points || 0,
+        dueDate,
+        availableDate,
+        untilDate,
+        category: "ASSIGNMENTS",
+        percent: "10%",
+        link: `Assignments/${newId.slice(0, 6)}`,
+        description: "",
+        available: availableDate ? `Available from ${availableDate}` : "",
+        due: dueDate ? `Due ${dueDate}` : "",
+        courses: [cid!],
+      };
+
+      console.log('Dispatching new assignment:', newAssignment);
+      dispatch(addAssignment(newAssignment));
+    } else {
+      // For updates, include the existing ID
+      const updatedAssignment: Assignment = {
+        id: assignmentId!,
+        title: title.trim(),
+        context,
+        points,
+        dueDate,
+        availableDate,
+        untilDate,
+        category: "ASSIGNMENTS",
+        percent: "10%",
+        link: `Assignments/${assignmentId}`,
+        description: "",
+        available: availableDate ? `Available from ${availableDate}` : "",
+        due: dueDate ? `Due ${dueDate}` : "",
+        courses: [cid!],
+      };
+
+      console.log('Dispatching updated assignment:', updatedAssignment);
+      dispatch(updateAssignment(updatedAssignment));
+    }
+
+    console.log('Navigating back to assignments page');
     navigate(`/Kambaz/Courses/${cid}/Assignments`);
   };
 
@@ -71,7 +131,6 @@ export default function AssignmentEditor() {
           Assignment Name
         </Form.Label>
         <Form.Control type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-
       </Form.Group>
 
       {/* Description */}
@@ -165,23 +224,36 @@ export default function AssignmentEditor() {
 
       {/* Buttons below the Assign section */}
       <div className="d-flex justify-content-end gap-2 mt-4" style={{ maxWidth: '600px' }}>
-        <Link
+        <button
           id="wd-cancel-btn"
-          to={`/Kambaz/Courses/${cid}/Assignments`}
+          onClick={handleCancel}
           className="btn btn-light"
         >
           Cancel
-        </Link>
-        <Link
+        </button>
+        <button
           id="wd-save-btn"
-          to={`/Kambaz/Courses/${cid}/Assignments`}
+          onClick={(e) => {
+            console.log('=== SAVE BUTTON CLICKED ===');
+            console.log('Event:', e);
+            console.log('Current form values:', {
+              title,
+              context,
+              points,
+              dueDate,
+              availableDate,
+              untilDate,
+              isNew,
+              assignmentId,
+              cid
+            });
+            handleSave();
+          }}
           className="btn btn-danger"
         >
           Save
-        </Link>
+        </button>
       </div>
-
     </div>
-
   );
 }

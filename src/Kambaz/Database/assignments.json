@@ -12,7 +12,7 @@
         "description": "Multiple Modules",
         "context": "The assignment is available online.\nSubmit a link to the landing page of your Web Application running on Netlify",
         "percent": "40%",
-        "link": "Assignments/a1",
+        "link": "a1",
         "courses": [
             "RS101",
             "RS102",
@@ -37,7 +37,7 @@
         "description": "Multiple Modules",
         "context": "The assignment is available online.\nSubmit a link to the landing page of your Web Application running on Netlify",
         "percent": "40%",
-        "link": "Assignments/a2",
+        "link": "a2",
         "courses": [
             "RS101",
             "RS102",
@@ -62,7 +62,7 @@
         "description": "Multiple Modules",
         "context": "The assignment is available online.\nSubmit a link to the landing page of your Web Application running on Netlify",
         "percent": "40%",
-        "link": "Assignments/a3",
+        "link": "a3",
         "courses": [
             "RS101",
             "RS102",
@@ -87,7 +87,7 @@
         "description": "",
         "context": "The quiz is available online.\nSubmit a link to the landing page ofyour Web Application running on Netlify",
         "percent": "10%",
-        "link": "Assignments/q1",
+        "link": "q1",
         "courses": [
             "RS101",
             "RS102",
@@ -112,7 +112,7 @@
         "description": "",
         "context": "The exam is available online.\nSubmit a link to the landing page of your Web Application running on Netlify",
         "percent": "20%",
-        "link": "Assignments/midterm",
+        "link": "midterm",
         "courses": [
             "RS101",
             "RS102",
@@ -137,7 +137,7 @@
         "description": "",
         "context": "The project is available online.\nSubmit a link to the landing page of your Web Application running on Netlify",
         "percent": "30%",
-        "link": "Assignments/final",
+        "link": "final",
         "courses": [
             "RS101",
             "RS102",
