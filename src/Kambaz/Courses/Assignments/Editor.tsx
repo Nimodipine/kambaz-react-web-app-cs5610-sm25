@@ -1,6 +1,5 @@
 import { Form, Row, Col } from "react-bootstrap";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import assignmentsData from "../../Database/assignments.json";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
 import { v4 as uuidv4 } from "uuid";
