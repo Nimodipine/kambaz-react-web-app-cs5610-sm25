@@ -1,13 +1,12 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ListGroup } from 'react-bootstrap';
 import { BsGripVertical } from 'react-icons/bs';
 import { MdOutlineAssignment } from 'react-icons/md';
 import PlusControlButtons from "./PlusControlButtons";
 import HeaderControlButtons from "./HeaderControlButtons";
 import AssignmentsControls from "./AssignmentsControls";
-import assignmentsData from "../../Database/assignments.json";
+import { useSelector } from "react-redux";
 
-// Define the Assignment interface to match your JSON structure
 interface Assignment {
   id: string;
   title: string;
@@ -18,20 +17,21 @@ interface Assignment {
   description: string;
   percent: string;
   link: string;
+  courses: string[];
 }
-
 
 export default function Assignments() {
   const { cid } = useParams<{ cid: string }>();
+  const navigate = useNavigate();
 
-  if (!cid) {
-    return <div>Course ID not found</div>;
-  }
+  const assignments = useSelector((state: any) => state.assignmentsReducer.assignments);
 
-  const assignments = assignmentsData.filter(a => a.courses?.includes(cid));
+  if (!cid) return <div>Course ID not found</div>;
 
-  const grouped: Record<string, Assignment[]> = assignments.reduce(
-    (acc, item) => {
+  const courseAssignments = assignments.filter((a: Assignment) => a.courses?.includes(cid));
+
+  const grouped: Record<string, Assignment[]> = courseAssignments.reduce(
+    (acc: Record<string, Assignment[]>, item: Assignment) => {
       acc[item.category] = acc[item.category] || [];
       acc[item.category].push(item);
       return acc;
@@ -39,9 +39,14 @@ export default function Assignments() {
     {} as Record<string, Assignment[]>
   );
 
+
+  const handleAddAssignment = () => {
+    navigate(`/Kambaz/Courses/${cid}/Assignments/new`);
+  };
+
   return (
     <div>
-      <AssignmentsControls />
+      <AssignmentsControls handleAdd={handleAddAssignment} />
 
       {Object.entries(grouped).map(([category, items]) => (
         <ListGroup className="rounded-0 wd-assignment mt-5" key={category}>

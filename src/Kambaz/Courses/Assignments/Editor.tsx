@@ -1,14 +1,67 @@
 import { Form, Row, Col } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
-import assignments from "../../Database/assignments.json";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import assignmentsData from "../../Database/assignments.json";
+import { useDispatch } from "react-redux";
+import { addAssignment } from "./reducer"; // adjust path if needed
+import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
+
+interface Assignment {
+  id: string;
+  title: string;
+  category: string;
+  points: number;
+  available: string;
+  availableDate: string;
+  due: string;
+  dueDate: string;
+  untilDate: string;
+  description: string;
+  context: string;
+  percent: string;
+  link: string;
+  courses: string[];
+}
 
 export default function AssignmentEditor() {
   const { cid, assignmentId } = useParams();
-  const assignment = assignments.find(a => a.id === assignmentId);
-  if (!assignment) return <div>Assignment not found</div>;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  console.log("assignmentId from URL:", assignmentId);
-  console.log("assignment IDs in JSON:", assignments.map(a => a.id));
+  const isNew = assignmentId === "new";
+
+  const [title, setTitle] = useState("");
+  const [context, setContext] = useState("");
+  const [points, setPoints] = useState(100);
+  const [dueDate, setDueDate] = useState("");
+  const [availableDate, setAvailableDate] = useState("");
+  const [untilDate, setUntilDate] = useState("");
+
+  const handleSave = () => {
+    const newAssignment = {
+      id: uuidv4(),
+      title,
+      context,
+      points,
+      dueDate,
+      availableDate,
+      untilDate,
+      category: "ASSIGNMENTS",
+      percent: "10%", // or let user choose later
+      link: `Assignments/${uuidv4().slice(0, 6)}`, // dummy link
+      description: "",
+      available: "",
+      due: "",
+      courses: [cid!],
+    };
+
+    dispatch(addAssignment(newAssignment));
+    navigate(`/Kambaz/Courses/${cid}/Assignments`);
+  };
+
+  const handleCancel = () => {
+    navigate(`/Kambaz/Courses/${cid}/Assignments`);
+  };
 
   return (
     <div id="wd-assignments-editor" className="p-3">
@@ -17,12 +70,13 @@ export default function AssignmentEditor() {
         <Form.Label style={{ fontSize: '1.2em', fontWeight: 'bold' }}>
           Assignment Name
         </Form.Label>
-        <Form.Control type="text" defaultValue={assignment.title} />
+        <Form.Control type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+
       </Form.Group>
 
       {/* Description */}
       <Form.Group className="mb-4" controlId="wd-description" style={{ maxWidth: '600px' }}>
-        <Form.Control as="textarea" rows={8} defaultValue={assignment.context} />
+        <Form.Control as="textarea" rows={8} value={context} onChange={(e) => setContext(e.target.value)} />
       </Form.Group>
 
       <Form style={{ maxWidth: '600px' }}>
@@ -30,7 +84,7 @@ export default function AssignmentEditor() {
           <Form.Label column sm={4} className="text-end fw-bold">
             Points</Form.Label>
           <Col sm={8}>
-            <Form.Control type="number" defaultValue={assignment.points} />
+            <Form.Control type="number" value={points} onChange={(e) => setPoints(Number(e.target.value))} />
           </Col>
         </Form.Group>
 
@@ -92,17 +146,16 @@ export default function AssignmentEditor() {
               <Form.Control type="text" defaultValue="Everyone" className="mb-3" />
 
               <Form.Label className="fw-normal">Due</Form.Label>
-              <Form.Control type="date" defaultValue={assignment.dueDate}
-                className="mb-3" />
+              <Form.Control type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
 
               <Row className="g-3">
                 <Col md={6}>
                   <Form.Label className="fw-normal">Available From</Form.Label>
-                  <Form.Control type="date" defaultValue={assignment.availableDate} />
+                  <Form.Control type="date" value={availableDate} onChange={(e) => setAvailableDate(e.target.value)} />
                 </Col>
                 <Col md={6}>
                   <Form.Label className="fw-normal">Until</Form.Label>
-                  <Form.Control type="date" defaultValue={assignment.untilDate} />
+                  <Form.Control type="date" value={untilDate} onChange={(e) => setUntilDate(e.target.value)} />
                 </Col>
               </Row>
             </div>

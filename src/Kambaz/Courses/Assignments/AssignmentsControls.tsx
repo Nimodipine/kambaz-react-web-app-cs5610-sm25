@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
+import { FaPlus } from "react-icons/fa";
 
-export default function AssignmentsControls() {
+export default function AssignmentsControls({ handleAdd }: { handleAdd: () => void }) {
     return (
         <div id="wd-assignments" className="d-flex justify-content-between align-items-center mb-3">
             {/* Search input on the left */}
@@ -18,11 +19,9 @@ export default function AssignmentsControls() {
                 >
                     + Group
                 </Button>
-                <Button
-                    variant="danger"
-                    id="wd-add-assignment"
-                >
-                    + Assignment
+                <Button variant="danger" size="lg" onClick={handleAdd} id="wd-add-assignment-btn">
+                    <FaPlus className="me-2" />
+                    Assignment
                 </Button>
             </div>
         </div>
