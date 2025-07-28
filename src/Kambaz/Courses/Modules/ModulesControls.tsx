@@ -10,7 +10,7 @@ export default function ModulesControls(
         { moduleName: string; setModuleName: (title: string) => void; addModule: () => void; }) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
     return (
         <div id="wd-modules-controls" className="text-nowrap">
             {/* Add Module button */}
