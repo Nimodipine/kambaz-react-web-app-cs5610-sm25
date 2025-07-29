@@ -10,11 +10,18 @@ export default function ModulesControls(
         { moduleName: string; setModuleName: (title: string) => void; addModule: () => void; }) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true); // Add this function
 
     return (
         <div id="wd-modules-controls" className="text-nowrap">
             {/* Add Module button */}
-            <Button variant="danger" size="lg" className="me-1 float-end" id="wd-add-module-btn">
+            <Button
+                variant="danger"
+                size="lg"
+                className="me-1 float-end"
+                id="wd-add-module-btn"
+                onClick={handleShow} // Fixed: removed the extra quote and space
+            >
                 <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                 Module
             </Button>
