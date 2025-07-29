@@ -59,9 +59,14 @@ export default function AssignmentEditor() {
   }, [isNew, assignmentId, assignments]);
 
   const handleSave = () => {
-    console.log('=== HANDLE SAVE CLICKED ===');
-    console.log('isNew:', isNew);
-    console.log('assignmentId:', assignmentId);
+    const formatDate = (dateString: string) => {
+      const options: Intl.DateTimeFormatOptions = {
+        month: "short", day: "numeric", hour: "numeric", minute: "2-digit",
+        hour12: true,
+      };
+      const date = new Date(dateString);
+      return date.toLocaleString("en-US", options).replace(',', '').replace(':00', ':00am');
+    };
 
     // Validate required fields
     if (!title.trim()) {
@@ -70,7 +75,6 @@ export default function AssignmentEditor() {
     }
 
     if (isNew) {
-      // Use the same structure as your working version
       const newId = uuidv4();
       const newAssignment: Assignment = {
         id: newId,
@@ -83,16 +87,15 @@ export default function AssignmentEditor() {
         category: "ASSIGNMENTS",
         percent: "10%",
         link: `Assignments/${newId.slice(0, 6)}`,
-        description: "",
-        available: availableDate ? `Available from ${availableDate}` : "",
-        due: dueDate ? `Due ${dueDate}` : "",
+        description: "Multiple Modules",
+        available: availableDate ? `${formatDate(availableDate)}` : "",
+        due: dueDate ? `${formatDate(dueDate)}` : "",
         courses: [cid!],
       };
 
       console.log('Dispatching new assignment:', newAssignment);
       dispatch(addAssignment(newAssignment));
     } else {
-      // For updates, include the existing ID
       const updatedAssignment: Assignment = {
         id: assignmentId!,
         title: title.trim(),
@@ -104,9 +107,9 @@ export default function AssignmentEditor() {
         category: "ASSIGNMENTS",
         percent: "10%",
         link: `Assignments/${assignmentId}`,
-        description: "",
-        available: availableDate ? `Available from ${availableDate}` : "",
-        due: dueDate ? `Due ${dueDate}` : "",
+        description: "Multiple Modules",
+        available: availableDate ? `${formatDate(availableDate)}` : "",
+        due: dueDate ? `${formatDate(dueDate)}` : "",
         courses: [cid!],
       };
 
