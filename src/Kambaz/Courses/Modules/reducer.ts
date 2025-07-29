@@ -5,14 +5,12 @@ import { v4 as uuidv4 } from "uuid";
 const initialState = {
     modules: modules,
 };
-console.log("initialState.modules.length =", initialState.modules.length);
 
 const modulesSlice = createSlice({
     name: "modules",
     initialState,
     reducers: {
         addModule: (state, { payload: module }) => {
-            console.log("Reducer hit! Adding module:", module);
             const newModule: any = {
                 _id: uuidv4(),
                 lessons: [],

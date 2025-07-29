@@ -5,7 +5,6 @@ import LessonControlButtons from "./LessonControlButtons";
 import ModuleControlButtons from "./ModuleControlButtons";
 import { useState } from "react";
 import { useParams } from "react-router";
-import ModuleEditor from "./ModuleEditor";
 
 import { editModule, updateModule, deleteModule, addModule as addModuleAction } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,10 +15,8 @@ export default function Modules() {
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
 
-  const [showModuleEditor, setShowModuleEditor] = useState(false);
-
   const addModule = () => {
-    console.log("dispatching addModule with:", moduleName, cid); // <== add this
+    console.log("dispatching addModule with:", moduleName, cid);
 
     if (!moduleName || !cid) {
       console.warn("Missing module name or course ID.");
@@ -27,9 +24,8 @@ export default function Modules() {
     }
 
     dispatch(addModuleAction({ name: moduleName, course: cid }));
-    setModuleName("");
+    setModuleName(""); // Clear the module name after adding
   };
-
 
   console.log("modules in state:", modules);
 
@@ -40,7 +36,7 @@ export default function Modules() {
         <ModulesControls
           setModuleName={setModuleName}
           moduleName={moduleName}
-          addModule={() => setShowModuleEditor(true)}
+          addModule={addModule} // Pass the actual addModule function
         />
 
         <br /><br /><br /><br />
@@ -100,18 +96,7 @@ export default function Modules() {
         </ListGroup>
       </div>
 
-      {/* Add Module Modal */}
-      <ModuleEditor
-        show={showModuleEditor}
-        handleClose={() => setShowModuleEditor(false)}
-        dialogTitle="Add New Module"
-        moduleName={moduleName}
-        setModuleName={setModuleName}
-        addModule={() => {
-          addModule();
-          setShowModuleEditor(false);
-        }}
-      />
+      {/* Removed the duplicate ModuleEditor modal */}
     </div>
   );
 }
