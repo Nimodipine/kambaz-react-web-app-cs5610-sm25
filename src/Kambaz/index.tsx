@@ -8,6 +8,7 @@ import * as db from "./Database";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ProtectedRoute from "./Account/ProtectedRoute";
+import { useSelector } from "react-redux";
 
 export default function Kambaz() {
   const [courses, setCourses] = useState<any[]>(db.courses);
@@ -15,9 +16,29 @@ export default function Kambaz() {
     _id: "1234", name: "New Course", number: "New Number",
     startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
   });
+
+
+  const [enrollments, setEnrollments] = useState<any[]>(db.enrollments);
+
   const addNewCourse = () => {
-    setCourses([...courses, { ...course, _id: uuidv4() }]);
+    const newCourse = {
+      ...course,
+      _id: uuidv4(),
+      image: "../../public/images/nodejs.jpg"
+    };
+    setCourses([...courses, newCourse]);
+
+    const newEnrollment = {
+      _id: uuidv4(),
+      user: currentUser._id,
+      course: newCourse._id
+    };
+    setEnrollments([...enrollments, newEnrollment]);
+
+    setCourse(newCourse); // Optional: reset form to new course
   };
+
+
   const deleteCourse = (courseId: any) => {
     setCourses(courses.filter((course) => course._id !== courseId));
   };
@@ -32,6 +53,9 @@ export default function Kambaz() {
       })
     );
   };
+
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+
 
   return (
     <div id="wd-kambaz">
@@ -48,6 +72,8 @@ export default function Kambaz() {
               addNewCourse={addNewCourse}
               deleteCourse={deleteCourse}
               updateCourse={updateCourse}
+              enrollments={enrollments}
+              setEnrollments={setEnrollments}
             />
           </ProtectedRoute>
           } />

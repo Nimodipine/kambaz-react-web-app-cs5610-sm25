@@ -1,20 +1,23 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import * as db from "./Database";
 import { Button, Card, Col, FormControl, Row } from "react-bootstrap";
 
 
 export default function Dashboard(
   {
     courses, course, setCourse, addNewCourse,
-    deleteCourse, updateCourse
+    deleteCourse, updateCourse,
+    enrollments
   }: {
     courses: any[]; course: any; setCourse: (course: any) => void;
     addNewCourse: () => void; deleteCourse: (course: any) => void;
     updateCourse: () => void;
+    enrollments: any[];
+    setEnrollments: (e: any[]) => void;
   }) {
+
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { enrollments } = db;
+
 
   return (
     <div id="wd-dashboard">
