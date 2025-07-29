@@ -43,6 +43,8 @@ export default function AssignmentEditor() {
   const [dueDate, setDueDate] = useState("");
   const [availableDate, setAvailableDate] = useState("");
   const [untilDate, setUntilDate] = useState("");
+  const [category, setCategory] = useState("ASSIGNMENTS");
+
 
   useEffect(() => {
     if (!isNew) {
@@ -84,7 +86,7 @@ export default function AssignmentEditor() {
         dueDate,
         availableDate,
         untilDate,
-        category: "ASSIGNMENTS",
+        category,
         percent: "10%",
         link: `Assignments/${newId.slice(0, 6)}`,
         description: "Multiple Modules",
@@ -104,7 +106,7 @@ export default function AssignmentEditor() {
         dueDate,
         availableDate,
         untilDate,
-        category: "ASSIGNMENTS",
+        category,
         percent: "10%",
         link: `Assignments/${assignmentId}`,
         description: "Multiple Modules",
@@ -153,7 +155,7 @@ export default function AssignmentEditor() {
           <Form.Label column sm={4} className="text-end fw-bold">
             Assignment Group</Form.Label>
           <Col sm={8}>
-            <Form.Select>
+            <Form.Select value={category} onChange={(e) => setCategory(e.target.value)}>
               <option>ASSIGNMENTS</option>
               <option>QUIZZES</option>
               <option>EXAMS</option>
