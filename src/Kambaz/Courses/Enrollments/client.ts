@@ -1,11 +1,17 @@
 import axios from "axios";
-axios.defaults.withCredentials = true;
+const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
+
+const axiosWithCredentials = axios.create({
+    baseURL: REMOTE_SERVER,
+    withCredentials: true
+});
+
 
 export const getUserEnrollments = async (userId: string) =>
-    (await axios.get(`/api/users/${userId}/enrollments`)).data;
+    (await axiosWithCredentials.get(`/api/users/${userId}/enrollments`)).data;
 
 export const enrollUserInCourse = async (userId: string, courseId: string) =>
-    axios.post(`/api/users/${userId}/enroll/${courseId}`);
+    axiosWithCredentials.post(`/api/users/${userId}/enroll/${courseId}`);
 
 export const unenrollUserFromCourse = async (userId: string, courseId: string) =>
-    axios.delete(`/api/users/${userId}/unenroll/${courseId}`);
+    axiosWithCredentials.delete(`/api/users/${userId}/unenroll/${courseId}`);
