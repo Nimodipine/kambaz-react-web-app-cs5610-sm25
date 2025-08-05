@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import { ListGroup, Modal, Button } from 'react-bootstrap';
 import { BsGripVertical } from 'react-icons/bs';
 import { MdOutlineAssignment } from 'react-icons/md';
@@ -7,6 +7,7 @@ import PlusControlButtons from "./PlusControlButtons";
 import HeaderControlButtons from "./HeaderControlButtons";
 import AssignmentsControls from "./AssignmentsControls";
 import * as assignmentsClient from "./client";
+
 
 interface Assignment {
   id: string;
@@ -24,6 +25,7 @@ interface Assignment {
 export default function Assignments() {
   const { cid } = useParams<{ cid: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [assignments, setAssignments] = useState<Assignment[]>([])
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
@@ -36,7 +38,7 @@ export default function Assignments() {
       setAssignments(data);
     };
     fetchAssignments();
-  }, [cid]);
+  }, [cid, location.state?.refetch]);
 
   if (!cid) return <div>Course ID not found</div>;
 

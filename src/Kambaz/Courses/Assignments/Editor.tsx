@@ -123,7 +123,7 @@ export default function AssignmentEditor() {
       console.log('Dispatching updated assignment:', updatedAssignment);
       assignmentsClient.updateAssignment(updatedAssignment)
         .then(() => {
-          navigate(`/Kambaz/Courses/${cid}/Assignments`);
+          navigate(`/Kambaz/Courses/${cid}/Assignments`, { state: { refetch: true } });
         })
         .catch((err) => {
           console.error("Failed to update assignment:", err);
