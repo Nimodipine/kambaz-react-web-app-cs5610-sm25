@@ -40,17 +40,6 @@ export default function WorkingWithArraysAsynchronously() {
         }
     };
 
-    const deleteTodo = async (todo: any) => {
-        try {
-            await client.deleteTodo(todo);
-            const newTodos = todos.filter((t) => t.id !== todo.id);
-            setTodos(newTodos);
-        } catch (error: any) {
-            console.log(error);
-            setErrorMessage(error.response.data.message);
-        }
-    };
-
     return (
         <div id="wd-asynchronous-arrays">
             <h3>Working with Arrays Asynchronously</h3>
