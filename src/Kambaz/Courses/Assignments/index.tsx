@@ -36,6 +36,10 @@ export default function Assignments() {
       if (!cid) return;
       const data = await assignmentsClient.findAssignmentsForCourse(cid);
       setAssignments(data);
+
+      if (location.state?.refetch) {
+        window.history.replaceState({}, "");
+      }
     };
     fetchAssignments();
   }, [cid, location.state?.refetch]);

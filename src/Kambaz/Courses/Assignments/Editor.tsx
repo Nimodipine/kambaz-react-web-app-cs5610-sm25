@@ -130,7 +130,7 @@ export default function AssignmentEditor() {
 
     }
     console.log('Navigating back to assignments page');
-    navigate(`/Kambaz/Courses/${cid}/Assignments`, { state: { refetch: true } });
+    navigate(`/Kambaz/Courses/${cid}/Assignments`);
   };
 
   const handleCancel = () => {
