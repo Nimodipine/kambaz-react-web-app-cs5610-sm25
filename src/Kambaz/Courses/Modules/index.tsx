@@ -18,8 +18,10 @@ export default function Modules() {
   const dispatch = useDispatch();
 
   const saveModule = async (module: any) => {
-    await modulesClient.updateModule(module);
-    dispatch(updateModule(module));
+    const cleaned = { ...module };
+    delete cleaned.editing;
+    const updated = await modulesClient.updateModule(cleaned);
+    dispatch(updateModule({ ...updated, editing: false }));
   };
 
   const removeModule = async (moduleId: string) => {
@@ -32,6 +34,7 @@ export default function Modules() {
     const newModule = { name: moduleName, course: cid };
     const module = await coursesClient.createModuleForCourse(cid, newModule);
     dispatch(addModuleAction(module));
+    setModuleName("");
   };
 
   const fetchModules = async () => {
@@ -42,15 +45,6 @@ export default function Modules() {
     fetchModules();
   }, []);
 
-  const handleAddModule = () => {
-    if (!moduleName || !cid) {
-      console.warn("Missing module name or course ID.");
-      return;
-    }
-    dispatch(addModuleAction({ name: moduleName, course: cid }));
-    setModuleName("");
-  };
-
   return (
     <div>
       <div>
@@ -58,7 +52,7 @@ export default function Modules() {
         <ModulesControls
           setModuleName={setModuleName}
           moduleName={moduleName}
-          addModule={handleAddModule}
+          addModule={createModuleForCourse}
         />
 
         <br /><br /><br /><br />
@@ -82,7 +76,8 @@ export default function Modules() {
                         }
                         onKeyDown={(e) => {
                           if (e.key === "Enter") {
-                            saveModule({ ...module, editing: false });
+                            const newName = (e.target as HTMLInputElement).value;
+                            saveModule({ ...module, name: newName, editing: false });
                           }
                         }}
                         defaultValue={module.name}

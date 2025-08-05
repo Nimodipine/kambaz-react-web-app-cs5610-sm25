@@ -3,6 +3,8 @@ import Account from "./Account";
 import Dashboard from "./Dashboard";
 import KambazNavigation from "./Navigation";
 import Courses from "./Courses";
+import EnrollmentsScreen from "./Courses/Enrollments";
+
 import "./styles.css"
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -41,7 +43,6 @@ export default function Kambaz() {
   };
 
   const deleteCourse = async (courseId: any) => {
-    const status = await courseClient.deleteCourse(courseId);
     setCourses(courses.filter((course) => course._id !== courseId));
   };
 
@@ -53,19 +54,20 @@ export default function Kambaz() {
     }));
   };
 
-  const fetchCourses = async () => {
-    try {
-      const courses = await userClient.findMyCourses();
-      setCourses(courses);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
-    if (currentUser?._id) {
-      fetchCourses();
-    }
+    const fetchData = async () => {
+      if (!currentUser?._id) return;
+      try {
+        const courses = await userClient.findMyCourses();
+        setCourses(courses);
+
+        const enrollments = await courseClient.fetchEnrollments();
+        setEnrollments(enrollments);
+      } catch (error) {
+        console.error("Error fetching dashboard data", error);
+      }
+    };
+    fetchData();
   }, [currentUser]);
 
   return (
@@ -92,6 +94,11 @@ export default function Kambaz() {
             <Route path="/Courses/:cid/*" element={
               <ProtectedRoute>
                 <Courses courses={courses} />
+              </ProtectedRoute>
+            } />
+            <Route path="/Enrollments" element={
+              <ProtectedRoute>
+                <EnrollmentsScreen />
               </ProtectedRoute>
             } />
             <Route path="/Calendar" element={<h1>Calendar</h1>} />

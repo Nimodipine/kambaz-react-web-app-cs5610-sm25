@@ -1,11 +1,11 @@
 import { Form, Row, Col } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addAssignment, updateAssignment } from "./reducer";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import * as assignmentsClient from "./client";
+
 
 interface Assignment {
   id: string;
@@ -33,7 +33,6 @@ export default function AssignmentEditor() {
   const assignmentId = wildcardParam === 'Assignments/new' ? 'new' : wildcardParam.replace('Assignments/', '');
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const assignments = useSelector((state: any) => state.assignmentReducer.assignments);
 
   const isNew = assignmentId === "new";
@@ -96,7 +95,13 @@ export default function AssignmentEditor() {
       };
 
       console.log('Dispatching new assignment:', newAssignment);
-      dispatch(addAssignment(newAssignment));
+      assignmentsClient.createAssignment(newAssignment)
+        .then(() => {
+          navigate(`/Kambaz/Courses/${cid}/Assignments`);
+        })
+        .catch((err) => {
+          console.error("Failed to save assignment:", err);
+        });
     } else {
       const updatedAssignment: Assignment = {
         id: assignmentId!,
@@ -116,7 +121,14 @@ export default function AssignmentEditor() {
       };
 
       console.log('Dispatching updated assignment:', updatedAssignment);
-      dispatch(updateAssignment(updatedAssignment));
+      assignmentsClient.updateAssignment(updatedAssignment)
+        .then(() => {
+          navigate(`/Kambaz/Courses/${cid}/Assignments`);
+        })
+        .catch((err) => {
+          console.error("Failed to update assignment:", err);
+        });
+
     }
 
     console.log('Navigating back to assignments page');

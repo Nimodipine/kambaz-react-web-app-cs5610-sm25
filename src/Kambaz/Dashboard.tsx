@@ -18,6 +18,7 @@ export default function Dashboard(
 
   const { currentUser } = useSelector((state: any) => state.accountReducer);
 
+  console.log("Current user:", currentUser);
 
   return (
     <div id="wd-dashboard">

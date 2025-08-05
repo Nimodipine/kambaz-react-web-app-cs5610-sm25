@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ListGroup, Modal, Button } from 'react-bootstrap';
 import { BsGripVertical } from 'react-icons/bs';
@@ -6,8 +6,7 @@ import { MdOutlineAssignment } from 'react-icons/md';
 import PlusControlButtons from "./PlusControlButtons";
 import HeaderControlButtons from "./HeaderControlButtons";
 import AssignmentsControls from "./AssignmentsControls";
-import { useSelector, useDispatch } from "react-redux";
-import { deleteAssignment } from "./reducer"; // Import the actual action
+import * as assignmentsClient from "./client";
 
 interface Assignment {
   id: string;
@@ -25,13 +24,19 @@ interface Assignment {
 export default function Assignments() {
   const { cid } = useParams<{ cid: string }>();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const assignments = useSelector((state: any) => state.assignmentReducer.assignments);
-
-  // State for delete confirmation dialog
+  const [assignments, setAssignments] = useState<Assignment[]>([])
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [assignmentToDelete, setAssignmentToDelete] = useState<Assignment | null>(null);
+
+  useEffect(() => {
+    const fetchAssignments = async () => {
+      if (!cid) return;
+      const data = await assignmentsClient.findAssignmentsForCourse(cid);
+      setAssignments(data);
+    };
+    fetchAssignments();
+  }, [cid]);
 
   if (!cid) return <div>Course ID not found</div>;
 
@@ -59,10 +64,11 @@ export default function Assignments() {
     setShowDeleteDialog(true);
   };
 
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = async () => {
     if (assignmentToDelete) {
-      // Use the correct Redux action from your reducer
-      dispatch(deleteAssignment(assignmentToDelete.id));
+      await assignmentsClient.deleteAssignment(assignmentToDelete.id);
+      const updated = await assignmentsClient.findAssignmentsForCourse(cid!);
+      setAssignments(updated);
     }
     setShowDeleteDialog(false);
     setAssignmentToDelete(null);
