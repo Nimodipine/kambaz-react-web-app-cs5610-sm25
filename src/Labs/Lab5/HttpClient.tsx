@@ -3,6 +3,7 @@ import axios from "axios";
 import * as client from "./client";
 
 const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
+axios.defaults.withCredentials = true;
 
 export default function HttpClient() {
     const [welcomeOnClick, setWelcomeOnClick] = useState("");

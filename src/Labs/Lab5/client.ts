@@ -3,6 +3,8 @@ const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 const TODOS_API = `${REMOTE_SERVER}/lab5/todos`;
 export const USERS_API = `${REMOTE_SERVER}/api/users`;
 
+axios.defaults.withCredentials = true;
+
 export const fetchWelcomeMessage = async () => {
     const response = await axios.get(`${REMOTE_SERVER}/lab5/welcome`);
     return response.data;

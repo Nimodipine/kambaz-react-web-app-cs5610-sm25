@@ -2,6 +2,8 @@ import axios from "axios";
 const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 const MODULES_API = `${REMOTE_SERVER}/api/modules`;
 
+axios.defaults.withCredentials = true;
+
 export const deleteModule = async (moduleId: string) => {
     const response = await axios.delete(`${MODULES_API}/${moduleId}`);
     return response.data;

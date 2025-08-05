@@ -1,4 +1,5 @@
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 export const getUserEnrollments = async (userId: string) =>
     (await axios.get(`/api/users/${userId}/enrollments`)).data;
