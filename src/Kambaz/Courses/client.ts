@@ -36,6 +36,6 @@ export const createModuleForCourse = async (courseId: string, module: any) => {
 };
 
 export const fetchEnrollments = async () => {
-    const response = await axiosWithCredentials.get("/api/enrollments");
+    const response = await axiosWithCredentials.get(`${REMOTE_SERVER}/api/enrollments`);
     return response.data;
 };
