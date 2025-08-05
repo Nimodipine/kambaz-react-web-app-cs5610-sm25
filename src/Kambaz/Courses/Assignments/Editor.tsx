@@ -93,11 +93,10 @@ export default function AssignmentEditor() {
         due: dueDate ? `${formatDate(dueDate)}` : "",
         courses: [cid!],
       };
-
       console.log('Dispatching new assignment:', newAssignment);
       assignmentsClient.createAssignment(newAssignment)
         .then(() => {
-          navigate(`/Kambaz/Courses/${cid}/Assignments`);
+          navigate(`/Kambaz/Courses/${cid}/Assignments`, { state: { refetch: true } });
         })
         .catch((err) => {
           console.error("Failed to save assignment:", err);
@@ -130,9 +129,8 @@ export default function AssignmentEditor() {
         });
 
     }
-
     console.log('Navigating back to assignments page');
-    navigate(`/Kambaz/Courses/${cid}/Assignments`);
+    navigate(`/Kambaz/Courses/${cid}/Assignments`, { state: { refetch: true } });
   };
 
   const handleCancel = () => {
