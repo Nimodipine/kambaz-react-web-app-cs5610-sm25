@@ -3,7 +3,7 @@ import axios from "axios";
 import * as client from "./client";
 
 const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
-axios.defaults.withCredentials = true;
+const axiosWithCredentials = axios.create({ withCredentials: true });
 
 export default function HttpClient() {
     const [welcomeOnClick, setWelcomeOnClick] = useState("");
@@ -20,7 +20,7 @@ export default function HttpClient() {
 
     // On click
     const fetchWelcomeOnClick = async () => {
-        const response = await axios.get(`${REMOTE_SERVER}/lab5/welcome`);
+        const response = await axiosWithCredentials.get(`${REMOTE_SERVER}/lab5/welcome`);
         setWelcomeOnClick(response.data);
     };
 
