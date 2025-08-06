@@ -37,8 +37,13 @@ export default function EnrollmentsScreen() {
                 const userEnrollments = await enrollmentsClient.getUserEnrollments(userId);
                 console.log("User enrollments:", userEnrollments);
 
+                const validCourseIds = allCourses.map((course: any) => course._id);
+                const filteredEnrollments = userEnrollments.filter((courseId: string) =>
+                    validCourseIds.includes(courseId)
+                );
+
                 setCourses(allCourses);
-                dispatch(setEnrolledCourses(userEnrollments));
+                dispatch(setEnrolledCourses(filteredEnrollments));
             } catch (err) {
                 console.error("Failed to load courses or enrollments:", err);
             }

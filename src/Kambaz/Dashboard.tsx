@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Button, Card, Col, FormControl, Row } from "react-bootstrap";
+import * as enrollmentsClient from "./Courses/Enrollments/client"
 
 
 export default function Dashboard(
@@ -81,8 +82,16 @@ export default function Dashboard(
                       </Card.Text>
                       <Button variant="primary">Go</Button>
                       <button
-                        onClick={(event) => {
+                        onClick={async (event) => {
                           event.preventDefault();
+
+                          try {
+                            await enrollmentsClient.unenrollUserFromCourse(currentUser._id, course._id);
+                            console.log("User unenrolled from course:", course._id);
+                          } catch (err) {
+                            console.error("Failed to unenroll user before course deletion:", err);
+                          }
+
                           deleteCourse(course._id);
                         }}
                         className="btn btn-danger float-end"
