@@ -1,6 +1,6 @@
 [
     {
-        "id": "a1",
+        "_id": "a1",
         "title": "A1",
         "category": "ASSIGNMENTS",
         "points": 100,
@@ -25,7 +25,7 @@
         ]
     },
     {
-        "id": "a2",
+        "_id": "a2",
         "title": "A2",
         "category": "ASSIGNMENTS",
         "points": 100,
@@ -50,7 +50,7 @@
         ]
     },
     {
-        "id": "a3",
+        "_id": "a3",
         "title": "A3",
         "category": "ASSIGNMENTS",
         "points": 100,
@@ -75,7 +75,7 @@
         ]
     },
     {
-        "id": "q1",
+        "_id": "q1",
         "title": "Q1",
         "category": "QUIZZES",
         "points": 29,
@@ -100,7 +100,7 @@
         ]
     },
     {
-        "id": "midterm",
+        "_id": "midterm",
         "title": "Midterm Exam",
         "category": "EXAMS",
         "points": 100,
@@ -125,7 +125,7 @@
         ]
     },
     {
-        "id": "final",
+        "_id": "final",
         "title": "Final Project",
         "category": "PROJECT",
         "points": 100,

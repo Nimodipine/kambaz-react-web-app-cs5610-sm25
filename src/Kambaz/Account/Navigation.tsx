@@ -5,7 +5,6 @@ export default function AccountNavigation() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { pathname } = useLocation();
 
-  // Helper function to determine if link is active
   const isActive = (path: string) => pathname.includes(path) ? "active" : "text-danger";
 
   return (
@@ -30,13 +29,24 @@ export default function AccountNavigation() {
       )}
 
       {currentUser && (
-        <Link
-          id="wd-account-profile-link"
-          to="/Kambaz/Account/Profile"
-          className={`list-group-item border-0 ${isActive("Profile")}`}
-        >
-          Profile
-        </Link>
+        <>
+          <Link
+            id="wd-account-profile-link"
+            to="/Kambaz/Account/Profile"
+            className={`list-group-item border-0 ${isActive("Profile")}`}
+          >
+            Profile
+          </Link>
+
+          {currentUser.role === "ADMIN" && (
+            <Link
+              to="/Kambaz/Account/Users"
+              className={`list-group-item border-0 ${isActive("Users")}`}
+            >
+              Users
+            </Link>
+          )}
+        </>
       )}
     </div>
   );
