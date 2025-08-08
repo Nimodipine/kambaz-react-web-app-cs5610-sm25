@@ -17,24 +17,33 @@ export default function Modules() {
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
 
-  const saveModule = async (module: any) => {
-    const cleaned = { ...module };
-    delete cleaned.editing;
-    const updated = await modulesClient.updateModule(cleaned);
-    dispatch(updateModule({ ...updated, editing: false }));
+  const addModuleHandler = async () => {
+    const newModule = await coursesClient.createModuleForCourse(cid!, {
+      name: moduleName,
+      course: cid,
+    });
+    dispatch(addModuleAction(newModule));
+    setModuleName("");
   };
+
+  //const createModuleForCourse = async () => {
+  //if (!cid) return;
+  //const newModule = { name: moduleName, course: cid };
+  //const module = await coursesClient.createModuleForCourse(cid, newModule);
+  //dispatch(addModuleAction(module));
+  //setModuleName("");
+  //};
+
+  //const saveModule = async (module: any) => {
+  //const cleaned = { ...module };
+  //delete cleaned.editing;
+  //const updated = await modulesClient.updateModule(cleaned);
+  //dispatch(updateModule({ ...updated, editing: false }));
+  //};
 
   const removeModule = async (moduleId: string) => {
     await modulesClient.deleteModule(moduleId);
     dispatch(deleteModule(moduleId));
-  };
-
-  const createModuleForCourse = async () => {
-    if (!cid) return;
-    const newModule = { name: moduleName, course: cid };
-    const module = await coursesClient.createModuleForCourse(cid, newModule);
-    dispatch(addModuleAction(module));
-    setModuleName("");
   };
 
   const fetchModules = async () => {
@@ -45,6 +54,11 @@ export default function Modules() {
     fetchModules();
   }, []);
 
+  const updateModuleHandler = async (module: any) => {
+    await modulesClient.updateModule(module);
+    dispatch(updateModule(module));
+  };
+
   return (
     <div>
       <div>
@@ -52,7 +66,7 @@ export default function Modules() {
         <ModulesControls
           setModuleName={setModuleName}
           moduleName={moduleName}
-          addModule={createModuleForCourse}
+          addModule={addModuleHandler}
         />
 
         <br /><br /><br /><br />
@@ -72,15 +86,14 @@ export default function Modules() {
                       <FormControl
                         className="w-50 d-inline-block"
                         onChange={(e) =>
-                          dispatch(updateModule({ ...module, name: e.target.value }))
+                          updateModuleHandler({ ...module, name: e.target.value })
                         }
                         onKeyDown={(e) => {
                           if (e.key === "Enter") {
-                            const newName = (e.target as HTMLInputElement).value;
-                            saveModule({ ...module, name: newName, editing: false });
+                            updateModuleHandler({ ...module, editing: false });
                           }
                         }}
-                        defaultValue={module.name}
+                        value={module.name}
                       />
                     )}
                   </span>
