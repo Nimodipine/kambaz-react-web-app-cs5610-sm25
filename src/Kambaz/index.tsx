@@ -29,7 +29,7 @@ export default function Kambaz() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
 
   const addNewCourse = async () => {
-    const newCourse = await userClient.createCourse(course);
+    const newCourse = await userClient.createCourse(course);//may need to change to courseClient
     setCourses([...courses, newCourse]);
 
     const newEnrollment = {
@@ -43,6 +43,7 @@ export default function Kambaz() {
   };
 
   const deleteCourse = async (courseId: any) => {
+    const status = await courseClient.deleteCourse(courseId);
     setCourses(courses.filter((course) => course._id !== courseId));
   };
 
