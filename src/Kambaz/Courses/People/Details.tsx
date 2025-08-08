@@ -3,7 +3,6 @@ import { FaCheck, FaUserCircle } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
 import { useParams, useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 import * as client from "../../Account/client";
 import { FormControl } from "react-bootstrap";
 

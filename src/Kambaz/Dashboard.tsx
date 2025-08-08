@@ -8,7 +8,6 @@ export default function Dashboard(
   {
     courses, course, setCourse, addNewCourse,
     deleteCourse, updateCourse,
-    enrollments
   }: {
     courses: any[]; course: any; setCourse: (course: any) => void;
     addNewCourse: () => void; deleteCourse: (course: any) => void;
@@ -55,13 +54,6 @@ export default function Dashboard(
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
           {courses
-            .filter((course) =>
-              enrollments.some(
-                (enrollment) =>
-                  enrollment.user === currentUser._id &&
-                  enrollment.course === course._id
-              ))
-
             .map((course) => (
               <Col className="wd-dashboard-course" style={{ width: "300px" }} key={course._id}>
                 <Card>
