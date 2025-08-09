@@ -41,7 +41,7 @@ export default function Kambaz() {
       }
 
       console.log("Calling userClient.findCoursesForUser with ID:", currentUser._id);
-      const courses = await userClient.findCoursesForUser(currentUser._id);
+      const courses = await userClient.findMyCourses();
       console.log("Courses returned from API:", courses);
       console.log("Number of courses:", courses?.length);
       setCourses(courses);
@@ -70,17 +70,23 @@ export default function Kambaz() {
   const fetchCourses = async () => {
     try {
       const allCourses = await courseClient.fetchAllCourses();
-      const enrolledCourses = await userClient.findCoursesForUser(
-        currentUser._id
+      // Filter out null values from the API response
+      const enrolledCourses = (await userClient.findMyCourses()).filter(Boolean);
+
+      const enrolledIds = new Set(
+        enrolledCourses.map((c: any) =>
+          typeof c === "string"
+            ? c
+            : c._id ?? c.course?._id ?? c.course
+        )
       );
-      const courses = allCourses.map((course: any) => {
-        if (enrolledCourses.find((c: any) => c._id === course._id)) {
-          return { ...course, enrolled: true };
-        } else {
-          return course;
-        }
-      });
-      setCourses(courses);
+
+      setCourses(
+        allCourses.map((course: any) => ({
+          ...course,
+          enrolled: enrolledIds.has(course._id),
+        }))
+      );
     } catch (error) {
       console.error(error);
     }
@@ -123,7 +129,7 @@ export default function Kambaz() {
     } else {
       findCoursesForUser();
     }
-  }, [currentUser]);
+  }, [currentUser, enrolling]);
 
   return (
     <Session>
