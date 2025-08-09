@@ -7,7 +7,6 @@ import EnrollmentsScreen from "./Courses/Enrollments";
 
 import "./styles.css"
 import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import ProtectedRoute from "./Account/ProtectedRoute";
 import { useSelector } from "react-redux";
 import Session from "./Account/Session";
@@ -25,7 +24,7 @@ export default function Kambaz() {
     description: "Description",
   });
 
-  const [enrollments, setEnrollments] = useState<any[]>([]);
+
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const [enrolling, setEnrolling] = useState<boolean>(false);
 
