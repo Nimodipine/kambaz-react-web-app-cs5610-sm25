@@ -45,3 +45,7 @@ export const createCourse = async (course: any) => {
     return data;
 };
 
+export const fetchUserCourses = async () => {
+    const { data } = await axiosWithCredentials.get(`${COURSES_API}/current/courses`);
+    return data;
+};

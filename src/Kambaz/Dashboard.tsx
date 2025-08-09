@@ -7,13 +7,14 @@ import * as enrollmentsClient from "./Courses/Enrollments/client"
 export default function Dashboard(
   {
     courses, course, setCourse, addNewCourse,
-    deleteCourse, updateCourse,
+    deleteCourse, updateCourse, enrolling, setEnrolling, updateEnrollment
   }: {
     courses: any[]; course: any; setCourse: (course: any) => void;
     addNewCourse: () => void; deleteCourse: (course: any) => void;
     updateCourse: () => void;
-    enrollments: any[];
-    setEnrollments: (e: any[]) => void;
+    enrolling: boolean;
+    setEnrolling: (enrolling: boolean) => void;
+    updateEnrollment: (courseId: string, enrolled: boolean) => void;
   }) {
 
   const { currentUser } = useSelector((state: any) => state.accountReducer);
@@ -22,7 +23,12 @@ export default function Dashboard(
 
   return (
     <div id="wd-dashboard">
-      <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+      <h1 id="wd-dashboard-title">
+        Dashboard
+        <button onClick={() => setEnrolling(!enrolling)} className="float-end btn btn-primary" >
+          {enrolling ? "My Courses" : "All Courses"}
+        </button>
+      </h1> <hr />
       <h5>
         New Course
         <button className="btn btn-primary float-end" onClick={addNewCourse} id="wd-add-new-course-click">
@@ -54,7 +60,7 @@ export default function Dashboard(
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
           {courses
-            .map((course) => (
+            .filter(course => course !== null).map((course) => (
               <Col className="wd-dashboard-course" style={{ width: "300px" }} key={course._id}>
                 <Card>
                   <Link
@@ -64,6 +70,15 @@ export default function Dashboard(
                     <Card.Img src={course.image} variant="top" width="100%" height={160} />
                     <Card.Body className="card-body">
                       <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                        {enrolling && (
+                          <button onClick={(event) => {
+                            event.preventDefault();
+                            updateEnrollment(course._id, !course.enrolled);
+                          }}
+                            className={`btn ${course.enrolled ? "btn-danger" : "btn-success"} float-end`} >
+                            {course.enrolled ? "Unenroll" : "Enroll"}
+                          </button>
+                        )}
                         {course.name}
                       </Card.Title>
                       <Card.Text
