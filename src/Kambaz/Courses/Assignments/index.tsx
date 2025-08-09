@@ -8,19 +8,8 @@ import HeaderControlButtons from "./HeaderControlButtons";
 import AssignmentsControls from "./AssignmentsControls";
 import * as assignmentsClient from "./client";
 
+type Assignment = assignmentsClient.AssignmentUI;
 
-interface Assignment {
-  id: string;
-  title: string;
-  category: string;
-  points: number;
-  available: string;
-  due: string;
-  description: string;
-  percent: string;
-  link: string;
-  courses: string[];
-}
 
 export default function Assignments() {
   const { cid } = useParams<{ cid: string }>();
