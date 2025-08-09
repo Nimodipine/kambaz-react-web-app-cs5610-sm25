@@ -2,15 +2,34 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Button, Card, Col, FormControl, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import * as coursesClient from "./Courses/client";
-import * as userClient from "./Account/client";
 import * as enrollmentsClient from "./Courses/Enrollments/client";
 
-export default function Dashboard() {
-  const [courses, setCourses] = useState<any[]>([]);
-  const [course, setCourse] = useState({ name: "", description: "" });
-  const [enrolling, setEnrolling] = useState(false);
-  const [userEnrollments, setUserEnrollments] = useState<string[]>([]);
+// Define the props interface
+interface DashboardProps {
+  courses: any[];
+  course: any;
+  setCourse: React.Dispatch<React.SetStateAction<any>>;
+  addNewCourse: () => Promise<void>;
+  deleteCourse: (courseId: any) => Promise<void>;
+  updateCourse: () => Promise<void>;
+  enrolling: boolean;
+  setEnrolling: React.Dispatch<React.SetStateAction<boolean>>;
+  updateEnrollment: (courseId: string, enrolled: boolean) => Promise<void>;
+}
+
+export default function Dashboard({
+  courses,
+  course,
+  setCourse,
+  addNewCourse,
+  deleteCourse,
+  updateCourse,
+  enrolling,
+  setEnrolling,
+  updateEnrollment
+}: DashboardProps) {
+  // Remove local state that duplicates props
+  const [, setUserEnrollments] = useState<string[]>([]);
 
   const { currentUser } = useSelector((state: any) => state.accountReducer);
 
@@ -29,30 +48,8 @@ export default function Dashboard() {
     }
   };
 
-  // Fetch courses based on enrolling state
-  const fetchCourses = async () => {
-    try {
-      if (enrolling) {
-        // Fetch all courses and mark which ones user is enrolled in
-        const allCourses = await coursesClient.fetchAllCourses();
-        const coursesWithEnrollment = allCourses.map((course: { _id: string; }) => ({
-          ...course,
-          enrolled: userEnrollments.includes(course._id)
-        }));
-        setCourses(coursesWithEnrollment);
-      } else {
-        // Fetch only user's enrolled courses
-        const myCourses = await userClient.findMyCourses();
-        setCourses(myCourses);
-      }
-    } catch (error) {
-      console.error("Failed to fetch courses:", error);
-      setCourses([]);
-    }
-  };
-
   // Handle enrollment/unenrollment
-  const updateEnrollment = async (courseId: string, enroll: boolean) => {
+  const handleUpdateEnrollment = async (courseId: string, enroll: boolean) => {
     if (!currentUser?._id) return;
 
     try {
@@ -62,48 +59,13 @@ export default function Dashboard() {
         await enrollmentsClient.unenrollUserFromCourse(currentUser._id, courseId);
       }
 
-      // Refresh enrollments and courses
+      // Use the parent's updateEnrollment function
+      await updateEnrollment(courseId, enroll);
+
+      // Refresh enrollments
       await fetchUserEnrollments();
-      await fetchCourses();
     } catch (error) {
       console.error("Failed to update enrollment:", error);
-    }
-  };
-
-  // Handle course deletion
-  const deleteCourse = async (courseId: string) => {
-    try {
-      await coursesClient.deleteCourse(courseId);
-      // Refresh courses after deletion
-      await fetchCourses();
-    } catch (error) {
-      console.error("Failed to delete course:", error);
-    }
-  };
-
-  // Handle adding new course
-  const addNewCourse = async () => {
-    if (!course.name.trim()) return;
-
-    try {
-      await coursesClient.createCourse(course);
-      setCourse({ name: "", description: "" });
-      await fetchCourses();
-    } catch (error) {
-      console.error("Failed to create course:", error);
-    }
-  };
-
-  // Handle updating existing course
-  const updateCourse = async () => {
-    if (!course.name.trim()) return;
-
-    try {
-      await coursesClient.updateCourse(course);
-      setCourse({ name: "", description: "" });
-      await fetchCourses();
-    } catch (error) {
-      console.error("Failed to update course:", error);
     }
   };
 
@@ -111,11 +73,6 @@ export default function Dashboard() {
   useEffect(() => {
     fetchUserEnrollments();
   }, [currentUser]);
-
-  // Fetch courses when enrolling state changes or user enrollments change
-  useEffect(() => {
-    fetchCourses();
-  }, [enrolling, userEnrollments]);
 
   return (
     <div id="wd-dashboard">
@@ -178,7 +135,7 @@ export default function Dashboard() {
                         {enrolling && (
                           <button onClick={(event) => {
                             event.preventDefault();
-                            updateEnrollment(course._id, !course.enrolled);
+                            handleUpdateEnrollment(course._id, !course.enrolled);
                           }}
                             className={`btn ${course.enrolled ? "btn-danger" : "btn-success"} float-end`} >
                             {course.enrolled ? "Unenroll" : "Enroll"}
@@ -200,7 +157,6 @@ export default function Dashboard() {
                           <button
                             onClick={async (event) => {
                               event.preventDefault();
-                              // Only delete the course from database, don't unenroll users first
                               deleteCourse(course._id);
                             }}
                             className="btn btn-danger float-end"
