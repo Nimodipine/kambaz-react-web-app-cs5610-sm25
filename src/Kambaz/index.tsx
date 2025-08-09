@@ -93,18 +93,19 @@ export default function Kambaz() {
   };
 
   const addNewCourse = async () => {
-    const newCourse = await userClient.createCourse(course);//may need to change to courseClient
-    setCourses([...courses, newCourse]);
+    try {
+      // This calls POST /api/users/current/courses
+      // Server creates the course AND enrolls the current user
+      const created = await userClient.createCourse(course);
 
-    const newEnrollment = {
-      _id: uuidv4(),
-      user: currentUser._id,
-      course: newCourse._id,
-    };
-    setEnrollments([...enrollments, newEnrollment]);
+      setCourses(prev => [...prev, { ...created, enrolled: true }])
 
-    setCourse(newCourse); // Optional: reset form to the new course
+      setCourse(created);
+    } catch (err) {
+      console.error("Failed to create & enroll in course:", err);
+    }
   };
+
 
   const deleteCourse = async (courseId: any) => {
     const status = await courseClient.deleteCourse(courseId);
