@@ -6,8 +6,9 @@ import {
     setEnrolledCourses
 } from "./reducer";
 
-import * as enrollmentsClient from "./client"; // Client for enrollment API
-import * as coursesClient from "../client";    // Client for course API
+// Use the same clients as Dashboard - this ensures consistency!
+import * as userClient from "../../Account/client";    // Same as Dashboard
+import * as coursesClient from "../client";            // Same as Dashboard
 
 export default function EnrollmentsScreen() {
     const account = useSelector((state: any) => state.accountReducer.currentUser);
@@ -15,7 +16,6 @@ export default function EnrollmentsScreen() {
 
     const dispatch = useDispatch();
 
-    // Now managed by Redux:
     const enrolledCourseIds = useSelector(
         (state: any) => state.enrollmentsReducer.enrolledCourseIds
     );
@@ -34,16 +34,19 @@ export default function EnrollmentsScreen() {
                 const allCourses = await coursesClient.fetchAllCourses();
                 console.log("Fetched courses:", allCourses);
 
-                const userEnrollments = await enrollmentsClient.getUserEnrollments(userId);
+                // Use the same API as Dashboard
+                const userEnrollments = await userClient.findMyCourses();
                 console.log("User enrollments:", userEnrollments);
 
-                const validCourseIds = allCourses.map((course: any) => course._id);
-                const filteredEnrollments = userEnrollments.filter((courseId: string) =>
-                    validCourseIds.includes(courseId)
-                );
+                // Extract course IDs from enrollment data
+                const enrolledIds = userEnrollments
+                    .filter(Boolean) // Remove null values
+                    .map((course: any) =>
+                        typeof course === "string" ? course : course._id
+                    );
 
                 setCourses(allCourses);
-                dispatch(setEnrolledCourses(filteredEnrollments));
+                dispatch(setEnrolledCourses(enrolledIds));
             } catch (err) {
                 console.error("Failed to load courses or enrollments:", err);
             }
@@ -54,12 +57,17 @@ export default function EnrollmentsScreen() {
 
     const toggleEnrollment = async (courseId: string) => {
         try {
+            console.log(`Attempting to ${enrolledCourseIds.includes(courseId) ? 'unenroll from' : 'enroll in'} course:`, courseId);
+
             if (enrolledCourseIds.includes(courseId)) {
-                await enrollmentsClient.unenrollUserFromCourse(userId, courseId);
+                // Use the same API calls as Dashboard
+                await userClient.unenrollFromCourse(userId, courseId);
                 dispatch(unenrollFromCourse(courseId));
+                console.log('Successfully unenrolled from course:', courseId);
             } else {
-                await enrollmentsClient.enrollUserInCourse(userId, courseId);
+                await userClient.enrollIntoCourse(userId, courseId);
                 dispatch(enrollInCourse(courseId));
+                console.log('Successfully enrolled in course:', courseId);
             }
         } catch (err) {
             console.error("Enrollment action failed:", err);
